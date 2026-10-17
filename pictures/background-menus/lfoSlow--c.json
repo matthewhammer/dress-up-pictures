@@ -13,6 +13,7 @@
       "stars": false,
       "hearts": false,
       "xeyes": false,
+      "closed": false,
       "unibrow": true,
       "eyes": 50,
       "sides": 0,
@@ -74,8 +75,18 @@
       "poseLegR": 0,
       "poseKneeL": 0,
       "poseKneeR": 0,
+      "poseFootL": 0,
+      "poseFootR": 0,
+      "feetTurn": 0,
+      "pose": "stand",
+      "anim": "none",
+      "hugLift": 50,
+      "jumpShortH": 30,
+      "jumpShortS": 150,
+      "jumpHighH": 90,
+      "jumpHighS": 75,
       "facing": "front",
-      "sit": true
+      "sit": false
     },
     "shirt": {
       "style": "tee",
@@ -130,7 +141,7 @@
       "talonCount": 4
     },
     "background": {
-      "kind": "none",
+      "kind": "imagination",
       "figSize": 100,
       "figUnit": "scene",
       "figX": 0,
@@ -1240,7 +1251,7 @@
       "craftTrim6": "#f4efe6",
       "craftGable6": "#c9b27a",
       "lfoFast": "D",
-      "lfoSlow": "E",
+      "lfoSlow": "C",
       "lfoWings": "F",
       "inside": 1,
       "room1": "bunks",
@@ -1393,13 +1404,23 @@
     },
     "visible": {
       "all": 100,
-      "head": 100,
-      "eyes": 100,
-      "hair": 100,
-      "shirt": 100,
-      "pants": 100,
-      "feet": 100,
-      "hands": 100
+      "head": 0,
+      "eyes": 0,
+      "hair": 0,
+      "shirt": 0,
+      "pants": 0,
+      "feet": 0,
+      "hands": 0
+    },
+    "controls": {
+      "jumpShort": 1,
+      "jumpHigh": 0,
+      "run": 3,
+      "crouch": 2,
+      "crawlToggle": 5,
+      "back": 8,
+      "door": 9,
+      "enter": 4
     },
     "music": {
       "track": "scene",

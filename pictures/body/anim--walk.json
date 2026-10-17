@@ -13,6 +13,7 @@
       "stars": false,
       "hearts": false,
       "xeyes": false,
+      "closed": false,
       "unibrow": true,
       "eyes": 50,
       "sides": 0,
@@ -74,6 +75,16 @@
       "poseLegR": 0,
       "poseKneeL": 0,
       "poseKneeR": 0,
+      "poseFootL": 0,
+      "poseFootR": 0,
+      "feetTurn": 0,
+      "pose": "stand",
+      "anim": "walk",
+      "hugLift": 50,
+      "jumpShortH": 30,
+      "jumpShortS": 150,
+      "jumpHighH": 90,
+      "jumpHighS": 75,
       "facing": "front",
       "sit": false
     },
@@ -1400,6 +1411,16 @@
       "pants": 100,
       "feet": 100,
       "hands": 100
+    },
+    "controls": {
+      "jumpShort": 1,
+      "jumpHigh": 0,
+      "run": 3,
+      "crouch": 2,
+      "crawlToggle": 5,
+      "back": 8,
+      "door": 9,
+      "enter": 4
     },
     "music": {
       "track": "scene",
