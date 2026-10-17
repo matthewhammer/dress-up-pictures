@@ -28,7 +28,7 @@ if [ "$WHAT" != music ]; then
   source_json "$PICS/$DAY"
   node "$PICS/tools/thumbs.mjs" "$PICS/$DAY"
   node "$PICS/tools/days_index.mjs" "$PICS" "Messed Up Dress Up: every picture, by day" \
-    'Each day: every background (with and without the friend) and every chip menu at its defaults, as a 1920-wide PNG, an SVG and its settings (Load opens them in <a href="http://matthewhammer.org/kids-choice-games/dress-up/">the game</a>). A picture unchanged since an earlier day is that day&rsquo;s file. 🎵 <a href="http://matthewhammer.org/dress-up-music/">The music, by day</a>.'
+    'Each day: every background (with and without the friend), every chip menu at its defaults, and the friend climbing each place&rsquo;s ladder, as a 1920-wide PNG, an SVG and its settings (Load opens them in <a href="http://matthewhammer.org/kids-choice-games/dress-up/">the game</a>). A picture unchanged since an earlier day is that day&rsquo;s file. 🎵 <a href="http://matthewhammer.org/dress-up-music/">The music, by day</a>.'
   git -C "$PICS" add -A && git -C "$PICS" -c user.email=matthew.hammer@gmail.com commit -q -m "$DAY: Messed Up Dress Up $VERSION" || echo "pictures: nothing new to commit"
 fi
 if [ "$WHAT" != pictures ]; then
