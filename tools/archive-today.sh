@@ -14,8 +14,10 @@ PORT=${PORT:-9333}
 GAME=~/kids-choice-games; PICS=~/dress-up-pictures; MUSIC=~/dress-up-music
 # (each archive's own tools, in its repository: the copies there are the real ones)
 DAY=$(date +%Y/%m/%d)
-PAGE=~/du-shots/work.html
-cp "$GAME/dress-up/index.html" "$PAGE"
+# (the game as a folder since 2026-10-17, ticket 178: index.html, style.css and js/; copied whole, so the
+# archive draws what was there when it started, whatever is edited meanwhile)
+rm -rf ~/du-shots/work && mkdir -p ~/du-shots/work && cp -r "$GAME/dress-up/." ~/du-shots/work/
+PAGE=~/du-shots/work/index.html
 # (the version: the newest released one, and "+ unreleased" if the page has changes past it)
 REL=$(grep -m1 -oE '^## [0-9]+\.[0-9]+\.[0-9]+' "$GAME/dress-up/VERSIONS.md" | cut -c4-)
 VERSION=$REL
