@@ -1,7 +1,10 @@
 // An archive of Dress Up's pictures, for one day: every background with the
 // friend hidden and with the default friend; every option of every chip menu
 // (each against the defaults: colors and sliders are left alone; a menu
-// repeated for each castle, room, cat or horse taken once, for the first).
+// repeated for each castle, room, cat or horse taken once, for the first);
+// and moves the defaults never show (ticket 183): the friend climbing each
+// place's ladder, low, halfway and near the top (the climb set by hand, as
+// the controller sets it, so the hands are where that height puts them).
 // Each distinct drawing is three files, <folder>/<setting key>--<value>:
 // .png (1920 wide), .svg (the drawing, animations and all) and .json (the
 // settings, in the game's own save format: Load opens it). A repeat of a
@@ -56,7 +59,21 @@ const plan = (await send("Runtime.evaluate", { returnByValue: true, expression: 
   }
   return shots;
 })()` })).result.result.value;
-console.log(plan.length, "pictures planned");
+// (moves: the places with a ladder, the friend there at the defaults; each
+// climbed at three heights. A game without climbs by hand has none.)
+const ladderPlaces = (await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async () => {
+  if (typeof startClimb !== "function" || typeof bgShown === "undefined") return [];
+  const out = [];
+  for (const s of ${JSON.stringify(plan.filter(s => s.folder === "backgrounds-with-friend"))}) {
+    for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
+    state.music.mute = true; Object.assign(state.background, s.bg); changed(); await new Promise(r => setTimeout(r, 60));
+    if (bgShown.node && bgShown.node.querySelector("[data-ladder]")) out.push(s);
+  }
+  return out;
+})()` })).result.result.value || [];
+for (const s of ladderPlaces) for (const [at, word] of [[0.25, "low"], [0.5, "halfway"], [0.8, "near the top"]])
+  plan.push({ folder: "moves", name: `climb--${s.name}--${Math.round(at * 100)}`, label: `${s.label}: 🧗 climbing its ladder, ${word}`, bg: s.bg, friend: true, move: { at } });
+console.log(plan.length, "pictures planned,", ladderPlaces.length, "places with a ladder");
 // 2. take them, a batch at a time
 const out = [];
 for (let i = 0; i < plan.length; i += 20) {
@@ -106,6 +123,20 @@ for (let i = 0; i < plan.length; i += 20) {
       return null; };
     for (const s of ${JSON.stringify(batch)}) {
       reset();
+      // (a move: up the ladder nearest where the friend stands, by hand to its height)
+      if (s.move) {
+        Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = 100;
+        state.body.anim = "climbup"; state.body.facing = "back"; climb = null; climbAnywhere = true;
+        changed(); await tick(); if (!climb) startClimb();
+        if (!climb || climb.none) { res.push({ ...s, hash: "", same: false, hidden: true, png: null, svg: null, settings: null }); climb = null; continue; }
+        climb.manual = true; climb.got = 0; changed(); await tick();
+        climb.got = s.move.at * (climb.all || 0); changed(); await tick();
+        const m = markup();
+        res.push({ ...s, hash: h(m), baseHash: null, same: false, png: await snap(), svg: svgOf(),
+                   settings: JSON.stringify({ app: "dress-up", version: 1, saved: new Date().toISOString(), state }, null, 2) });
+        climb = null; reset(); changed();
+        continue;
+      }
       if (s.defaultOf) { state.background.kind = "none"; changed(); await tick(); const m0 = markup();
         res.push({ ...s, hash: h(m0), same: false, png: await snap(), svg: svgOf(), settings: JSON.stringify({ app: "dress-up", version: 1, saved: new Date().toISOString(), state }, null, 2) }); continue; }
       if (s.bg) { Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = s.friend ? 100 : 0; }
