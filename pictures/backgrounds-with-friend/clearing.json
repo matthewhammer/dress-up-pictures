@@ -2,6 +2,976 @@
   "app": "dress-up",
   "version": 1,
   "state": {
+    "world": {
+      "cols": 6,
+      "rows": 7,
+      "start": "3,3",
+      "cells": {
+        "0,0": {
+          "kind": "deepsea",
+          "ways": [
+            "E",
+            "S"
+          ],
+          "things": [
+            {
+              "kind": "shell",
+              "x": -282,
+              "z": 325,
+              "seed": 1334,
+              "size": 100,
+              "mirror": false,
+              "shape": "clam",
+              "color": "#ffffff"
+            },
+            {
+              "kind": "shell",
+              "x": 308,
+              "z": 327,
+              "seed": 7663,
+              "size": 100,
+              "mirror": false,
+              "shape": "conch",
+              "color": "#fdba74"
+            },
+            {
+              "kind": "shell",
+              "x": 125,
+              "z": 388,
+              "seed": 2019,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": -203,
+              "z": 347,
+              "seed": 2932,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": -10,
+              "z": 376,
+              "seed": 2653,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": 182,
+              "z": 335,
+              "seed": 9180,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": -146,
+              "z": 364,
+              "seed": 3121,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": -51,
+              "z": 400,
+              "seed": 2749,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            },
+            {
+              "kind": "shell",
+              "x": 239,
+              "z": 352,
+              "seed": 8125,
+              "size": 100,
+              "mirror": false,
+              "shape": "scallop",
+              "color": "#f8e1c7"
+            }
+          ]
+        },
+        "1,0": {
+          "kind": "sea",
+          "ways": [
+            "E",
+            "SE",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "2,0": {
+          "kind": "sea",
+          "ways": [
+            "E",
+            "S",
+            "W"
+          ],
+          "things": []
+        },
+        "3,0": {
+          "kind": "sea",
+          "ways": [
+            "E",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "4,0": {
+          "kind": "sea",
+          "ways": [
+            "W"
+          ],
+          "things": []
+        },
+        "1,1": {
+          "kind": "witch",
+          "ways": [
+            "E",
+            "SE",
+            "S"
+          ],
+          "things": []
+        },
+        "2,1": {
+          "kind": "beach",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "3,1": {
+          "kind": "mountains",
+          "ways": [
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "0,2": {
+          "kind": "deepsea",
+          "ways": [
+            "N",
+            "S"
+          ],
+          "things": []
+        },
+        "1,2": {
+          "kind": "forest",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S"
+          ],
+          "things": []
+        },
+        "2,2": {
+          "kind": "crossing",
+          "crossN": true,
+          "crossNE": true,
+          "crossE": true,
+          "crossSE": true,
+          "crossS": true,
+          "crossSW": true,
+          "crossW": true,
+          "crossNW": true,
+          "crossFloor": "#76843a",
+          "crossBack": "sky",
+          "things": []
+        },
+        "3,2": {
+          "kind": "woodpath",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "S",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "4,2": {
+          "kind": "fairyforest",
+          "ways": [
+            "N",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "0,3": {
+          "kind": "deepsea",
+          "ways": [
+            "N"
+          ],
+          "things": [
+            {
+              "kind": "chest",
+              "x": -260,
+              "z": 330,
+              "seed": 71399,
+              "size": 100,
+              "mirror": false,
+              "open": false
+            },
+            {
+              "kind": "chest",
+              "x": 309,
+              "z": 392,
+              "seed": 20207,
+              "size": 145,
+              "mirror": true,
+              "open": false
+            },
+            {
+              "kind": "chest",
+              "x": 192,
+              "z": 372,
+              "seed": 7656,
+              "size": 100,
+              "mirror": false,
+              "open": false
+            },
+            {
+              "kind": "chest",
+              "x": -286,
+              "z": 402,
+              "seed": 8337,
+              "size": 100,
+              "mirror": false,
+              "open": false
+            },
+            {
+              "kind": "kelp",
+              "x": -10,
+              "z": 376,
+              "seed": 8207,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "kelp",
+              "x": 182,
+              "z": 335,
+              "seed": 8954,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "kelp",
+              "x": -146,
+              "z": 364,
+              "seed": 6851,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "kelp",
+              "x": 47,
+              "z": 393,
+              "seed": 2290,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "kelp",
+              "x": 239,
+              "z": 352,
+              "seed": 8251,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "kelp",
+              "x": -338,
+              "z": 406,
+              "seed": 7807,
+              "size": 100,
+              "mirror": false,
+              "color": "#2f8f4e"
+            },
+            {
+              "kind": "starfish",
+              "x": 104,
+              "z": 340,
+              "seed": 6691,
+              "size": 100,
+              "mirror": false,
+              "color": "#fb923c"
+            },
+            {
+              "kind": "seafish",
+              "x": -224,
+              "z": 369,
+              "seed": 6711,
+              "size": 100,
+              "mirror": false,
+              "color": "#ff9f1c",
+              "bubbles": true
+            }
+          ]
+        },
+        "1,3": {
+          "kind": "crossing",
+          "crossN": true,
+          "crossNE": true,
+          "crossE": true,
+          "crossSE": true,
+          "crossS": true,
+          "crossSW": true,
+          "crossW": false,
+          "crossNW": true,
+          "crossFloor": "#76843a",
+          "crossBack": "mountains",
+          "things": []
+        },
+        "2,3": {
+          "kind": "lake",
+          "ways": [
+            "N",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": [
+            {
+              "kind": "pine",
+              "x": -260,
+              "z": 330,
+              "seed": 7989,
+              "size": 100,
+              "mirror": false,
+              "tiers": 6
+            },
+            {
+              "kind": "pine",
+              "x": 213,
+              "z": 329,
+              "seed": 6198,
+              "size": 205,
+              "mirror": false,
+              "tiers": 6
+            }
+          ]
+        },
+        "3,3": {
+          "kind": "clearing",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "4,3": {
+          "kind": "castle",
+          "ways": [
+            "S",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "1,4": {
+          "kind": "campsite",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "2,4": {
+          "kind": "crossing",
+          "crossN": true,
+          "crossNE": true,
+          "crossE": true,
+          "crossSE": true,
+          "crossS": true,
+          "crossSW": true,
+          "crossW": true,
+          "crossNW": true,
+          "crossFloor": "#76843a",
+          "crossBack": "sky",
+          "things": []
+        },
+        "3,4": {
+          "kind": "house",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "4,4": {
+          "kind": "treehouse",
+          "ways": [
+            "N",
+            "E",
+            "SW",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "1,5": {
+          "kind": "crossing",
+          "crossN": true,
+          "crossNE": true,
+          "crossE": true,
+          "crossSE": false,
+          "crossS": true,
+          "crossSW": false,
+          "crossW": true,
+          "crossNW": true,
+          "crossFloor": "#76843a",
+          "crossBack": "woods",
+          "things": [
+            {
+              "kind": "rock",
+              "x": -260,
+              "z": 330,
+              "seed": 7542,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": -68,
+              "z": 359,
+              "seed": 8222,
+              "size": 100,
+              "mirror": false,
+              "tone": "#b4afa4"
+            },
+            {
+              "kind": "rock",
+              "x": 125,
+              "z": 388,
+              "seed": 4640,
+              "size": 100,
+              "mirror": false,
+              "tone": "#6f8a94"
+            },
+            {
+              "kind": "rock",
+              "x": -203,
+              "z": 347,
+              "seed": 7742,
+              "size": 100,
+              "mirror": false,
+              "tone": "#c2a67a"
+            },
+            {
+              "kind": "tree",
+              "x": -130,
+              "z": 369,
+              "seed": 6975,
+              "size": 100,
+              "mirror": false,
+              "h": 380,
+              "leaves": "summer"
+            },
+            {
+              "kind": "tree",
+              "x": 222,
+              "z": 380,
+              "seed": 5384,
+              "size": 100,
+              "mirror": false,
+              "h": 380,
+              "leaves": "summer"
+            }
+          ]
+        },
+        "4,1": {
+          "kind": "treehouse",
+          "ways": [
+            "S",
+            "SW",
+            "W"
+          ],
+          "things": []
+        },
+        "0,1": {
+          "kind": "deepsea",
+          "ways": [
+            "N",
+            "NE",
+            "S"
+          ],
+          "things": [
+            {
+              "kind": "seagrass",
+              "x": -260,
+              "z": 330,
+              "seed": 8167,
+              "size": 100,
+              "mirror": false,
+              "color": "#4caf50"
+            },
+            {
+              "kind": "seafan",
+              "x": 245,
+              "z": 340,
+              "seed": 3582,
+              "size": 100,
+              "mirror": false,
+              "color": "#c084fc"
+            },
+            {
+              "kind": "sealettuce",
+              "x": 138,
+              "z": 368,
+              "seed": 5171,
+              "size": 100,
+              "mirror": false,
+              "color": "#8bc34a"
+            },
+            {
+              "kind": "coral",
+              "x": -235,
+              "z": 370,
+              "seed": 38069,
+              "size": 100,
+              "mirror": true,
+              "color": "#fde047"
+            }
+          ]
+        },
+        "0,4": {
+          "kind": "waterfall",
+          "ways": [
+            "NE",
+            "E",
+            "SE",
+            "S"
+          ],
+          "things": [
+            {
+              "kind": "rock",
+              "x": -312,
+              "z": 254,
+              "seed": 8049,
+              "size": 300,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": -303,
+              "z": 246,
+              "seed": 3981,
+              "size": 295,
+              "mirror": false,
+              "tone": "#b4afa4"
+            },
+            {
+              "kind": "rock",
+              "x": 125,
+              "z": 388,
+              "seed": 1374,
+              "size": 100,
+              "mirror": false,
+              "tone": "#6f8a94"
+            },
+            {
+              "kind": "rock",
+              "x": -329,
+              "z": 275,
+              "seed": 5615,
+              "size": 100,
+              "mirror": false,
+              "tone": "#c2a67a"
+            },
+            {
+              "kind": "rock",
+              "x": -10,
+              "z": 376,
+              "seed": 9571,
+              "size": 100,
+              "mirror": false,
+              "tone": "#a8634a"
+            },
+            {
+              "kind": "rock",
+              "x": 182,
+              "z": 335,
+              "seed": 4613,
+              "size": 100,
+              "mirror": false,
+              "tone": "#7f8a6a"
+            },
+            {
+              "kind": "tree",
+              "x": 332,
+              "z": 268,
+              "seed": 8644,
+              "size": 300,
+              "mirror": false,
+              "h": 380,
+              "leaves": "summer"
+            },
+            {
+              "kind": "pine",
+              "x": -302,
+              "z": 406,
+              "seed": 8567,
+              "size": 100,
+              "mirror": false,
+              "tiers": 6
+            },
+            {
+              "kind": "pine",
+              "x": -384,
+              "z": 246,
+              "seed": 9890,
+              "size": 100,
+              "mirror": false,
+              "tiers": 6
+            },
+            {
+              "kind": "pine",
+              "x": -292,
+              "z": 279,
+              "seed": 6334,
+              "size": 100,
+              "mirror": false,
+              "tiers": 6
+            },
+            {
+              "kind": "pine",
+              "x": -360,
+              "z": 342,
+              "seed": 3961,
+              "size": 100,
+              "mirror": false,
+              "tiers": 6
+            }
+          ]
+        },
+        "0,5": {
+          "kind": "forest",
+          "ways": [
+            "N",
+            "NE",
+            "E"
+          ],
+          "things": [
+            {
+              "kind": "rock",
+              "x": -260,
+              "z": 330,
+              "seed": 3479,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": -307,
+              "z": 319,
+              "seed": 4293,
+              "size": 200,
+              "mirror": false,
+              "tone": "#b4afa4"
+            },
+            {
+              "kind": "rock",
+              "x": 125,
+              "z": 388,
+              "seed": 2572,
+              "size": 100,
+              "mirror": false,
+              "tone": "#6f8a94"
+            },
+            {
+              "kind": "rock",
+              "x": -284,
+              "z": 358,
+              "seed": 1255,
+              "size": 100,
+              "mirror": false,
+              "tone": "#c2a67a"
+            },
+            {
+              "kind": "rock",
+              "x": -204,
+              "z": 310,
+              "seed": 7266,
+              "size": 100,
+              "mirror": false,
+              "tone": "#a8634a"
+            },
+            {
+              "kind": "rock",
+              "x": -164,
+              "z": 331,
+              "seed": 1209,
+              "size": 100,
+              "mirror": false,
+              "tone": "#7f8a6a"
+            },
+            {
+              "kind": "rock",
+              "x": -146,
+              "z": 364,
+              "seed": 5332,
+              "size": 100,
+              "mirror": false,
+              "tone": "#4f4b48"
+            },
+            {
+              "kind": "rock",
+              "x": -230,
+              "z": 386,
+              "seed": 2212,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": -88,
+              "z": 385,
+              "seed": 1993,
+              "size": 100,
+              "mirror": false,
+              "tone": "#b4afa4"
+            }
+          ]
+        },
+        "2,5": {
+          "kind": "cemetery",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "3,5": {
+          "kind": "lake",
+          "ways": [
+            "N",
+            "NE",
+            "E",
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "4,5": {
+          "kind": "castle",
+          "ways": [
+            "W",
+            "NW"
+          ],
+          "things": []
+        },
+        "5,4": {
+          "kind": "forest",
+          "ways": [
+            "W"
+          ],
+          "things": [
+            {
+              "kind": "rock",
+              "x": -106,
+              "z": 293,
+              "seed": 9349,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": 93,
+              "z": 293,
+              "seed": 3760,
+              "size": 100,
+              "mirror": false,
+              "tone": "#b4afa4"
+            },
+            {
+              "kind": "rock",
+              "x": 357,
+              "z": 406,
+              "seed": 4428,
+              "size": 100,
+              "mirror": false,
+              "tone": "#6f8a94"
+            },
+            {
+              "kind": "rock",
+              "x": -259,
+              "z": 387,
+              "seed": 3435,
+              "size": 100,
+              "mirror": false,
+              "tone": "#c2a67a"
+            },
+            {
+              "kind": "rock",
+              "x": -3,
+              "z": 406,
+              "seed": 1717,
+              "size": 100,
+              "mirror": false,
+              "tone": "#a8634a"
+            },
+            {
+              "kind": "rock",
+              "x": 381,
+              "z": 379,
+              "seed": 1648,
+              "size": 100,
+              "mirror": false,
+              "tone": "#7f8a6a"
+            },
+            {
+              "kind": "rock",
+              "x": -223,
+              "z": 406,
+              "seed": 2525,
+              "size": 100,
+              "mirror": false,
+              "tone": "#4f4b48"
+            },
+            {
+              "kind": "rock",
+              "x": 233,
+              "z": 406,
+              "seed": 4636,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            },
+            {
+              "kind": "rock",
+              "x": 364,
+              "z": 349,
+              "seed": 5501,
+              "size": 100,
+              "mirror": false,
+              "tone": "#b4afa4"
+            },
+            {
+              "kind": "rock",
+              "x": 87,
+              "z": 406,
+              "seed": 8667,
+              "size": 100,
+              "mirror": false,
+              "tone": "#6f8a94"
+            },
+            {
+              "kind": "rock",
+              "x": 297,
+              "z": 314,
+              "seed": 9413,
+              "size": 100,
+              "mirror": false,
+              "tone": "#c2a67a"
+            },
+            {
+              "kind": "rock",
+              "x": -348,
+              "z": 406,
+              "seed": 6844,
+              "size": 100,
+              "mirror": false,
+              "tone": "#a8634a"
+            },
+            {
+              "kind": "rock",
+              "x": -142,
+              "z": 398,
+              "seed": 5444,
+              "size": 100,
+              "mirror": false,
+              "tone": "#7f8a6a"
+            },
+            {
+              "kind": "rock",
+              "x": 375,
+              "z": 321,
+              "seed": 1488,
+              "size": 100,
+              "mirror": false,
+              "tone": "#4f4b48"
+            },
+            {
+              "kind": "rock",
+              "x": -83,
+              "z": 406,
+              "seed": 3132,
+              "size": 100,
+              "mirror": false,
+              "tone": "#8f8a80"
+            }
+          ]
+        }
+      },
+      "at": "3,3"
+    },
     "face": {
       "color": "#cfa000",
       "size": 46,
@@ -14,7 +984,7 @@
       "hearts": false,
       "xeyes": false,
       "closed": false,
-      "unibrow": true,
+      "unibrow": false,
       "eyes": 50,
       "sides": 0,
       "rays": 0,
@@ -58,6 +1028,10 @@
       "bangs": 100
     },
     "body": {
+      "blowFrom": "mouth",
+      "blowA": true,
+      "blowB": false,
+      "blowC": false,
       "neck": 22,
       "neckW": 26,
       "arms": 55,
@@ -85,8 +1059,11 @@
       "jumpShortS": 150,
       "jumpHighH": 90,
       "jumpHighS": 75,
+      "runSpeed": 100,
+      "accel": 0,
       "facing": "front",
-      "sit": false
+      "sit": false,
+      "turn": ""
     },
     "shirt": {
       "style": "tee",
@@ -154,11 +1131,31 @@
       "waterWake": 100,
       "waterTread": 100,
       "seat": null,
+      "bubbleCount": 30,
+      "bubbleWind": 30,
+      "bubbleAColor": "#9ad7ff",
+      "bubbleASize": 18,
+      "bubbleAShine": 70,
+      "bubbleASparkle": "none",
+      "bubbleASparkleColor": "#ffffff",
+      "bubbleBOn": false,
+      "bubbleBColor": "#ffb3e6",
+      "bubbleBSize": 26,
+      "bubbleBShine": 85,
+      "bubbleBSparkle": "star",
+      "bubbleBSparkleColor": "#fff5b0",
+      "bubbleCOn": false,
+      "bubbleCColor": "#c8f7c5",
+      "bubbleCSize": 11,
+      "bubbleCShine": 60,
+      "bubbleCSparkle": "dot",
+      "bubbleCSparkleColor": "#ffffff",
       "eyeRate": 30,
       "eyeGlow": 70,
       "skullMax": 300,
       "skullEye": 100,
       "blinkApart": false,
+      "cauldronFumes": "simple",
       "ducks": 5,
       "duckSize": 100,
       "cattails": 14,
@@ -166,7 +1163,7 @@
       "cloudSize": 100,
       "houseSize": 100,
       "treeSize": 100,
-      "toys": 6,
+      "toys": 10,
       "flowers": 18,
       "houses": 4,
       "bridges": 2,
@@ -176,8 +1173,34 @@
       "castle": "N",
       "castleLevelsN": 3,
       "castleStoneN": "#b8b8c4",
-      "castleTreesN": 6,
-      "castleMoatN": 100,
+      "castlePitShape1N": "circle",
+      "castlePitShape2N": "circle",
+      "castlePit1_1N": "circle",
+      "castlePit2_1N": "circle",
+      "castlePit1_2N": "circle",
+      "castlePit2_2N": "circle",
+      "castlePit1_3N": "circle",
+      "castlePit2_3N": "circle",
+      "castlePit1_4N": "circle",
+      "castlePit2_4N": "circle",
+      "castlePit1_5N": "circle",
+      "castlePit2_5N": "circle",
+      "castlePit1_6N": "circle",
+      "castlePit2_6N": "circle",
+      "castlePit1_7N": "circle",
+      "castlePit2_7N": "circle",
+      "castlePit1_8N": "circle",
+      "castlePit2_8N": "circle",
+      "castlePit1_9N": "circle",
+      "castlePit2_9N": "circle",
+      "castlePit1_10N": "circle",
+      "castlePit2_10N": "circle",
+      "castlePit1_11N": "circle",
+      "castlePit2_11N": "circle",
+      "castlePit1_12N": "circle",
+      "castlePit2_12N": "circle",
+      "castlePit1_13N": "circle",
+      "castlePit2_13N": "circle",
       "castleFlagAN": "#e53935",
       "castleFlagBN": "#ffffff",
       "castleFlagStyleN": "alternate",
@@ -510,8 +1533,34 @@
       "castleHorse4OffsetN": 8,
       "castleLevelsM": 4,
       "castleStoneM": "#e2c9a0",
-      "castleTreesM": 10,
-      "castleMoatM": 60,
+      "castlePitShape1M": "circle",
+      "castlePitShape2M": "circle",
+      "castlePit1_1M": "circle",
+      "castlePit2_1M": "circle",
+      "castlePit1_2M": "circle",
+      "castlePit2_2M": "circle",
+      "castlePit1_3M": "circle",
+      "castlePit2_3M": "circle",
+      "castlePit1_4M": "circle",
+      "castlePit2_4M": "circle",
+      "castlePit1_5M": "circle",
+      "castlePit2_5M": "circle",
+      "castlePit1_6M": "circle",
+      "castlePit2_6M": "circle",
+      "castlePit1_7M": "circle",
+      "castlePit2_7M": "circle",
+      "castlePit1_8M": "circle",
+      "castlePit2_8M": "circle",
+      "castlePit1_9M": "circle",
+      "castlePit2_9M": "circle",
+      "castlePit1_10M": "circle",
+      "castlePit2_10M": "circle",
+      "castlePit1_11M": "circle",
+      "castlePit2_11M": "circle",
+      "castlePit1_12M": "circle",
+      "castlePit2_12M": "circle",
+      "castlePit1_13M": "circle",
+      "castlePit2_13M": "circle",
       "castleFlagAM": "#f2c12e",
       "castleFlagBM": "#6a2c91",
       "castleFlagStyleM": "alternate",
@@ -844,8 +1893,34 @@
       "castleHorse4OffsetM": 8,
       "castleLevelsD": 5,
       "castleStoneD": "#7c8b6f",
-      "castleTreesD": 16,
-      "castleMoatD": 72,
+      "castlePitShape1D": "circle",
+      "castlePitShape2D": "circle",
+      "castlePit1_1D": "circle",
+      "castlePit2_1D": "circle",
+      "castlePit1_2D": "circle",
+      "castlePit2_2D": "circle",
+      "castlePit1_3D": "circle",
+      "castlePit2_3D": "circle",
+      "castlePit1_4D": "circle",
+      "castlePit2_4D": "circle",
+      "castlePit1_5D": "circle",
+      "castlePit2_5D": "circle",
+      "castlePit1_6D": "circle",
+      "castlePit2_6D": "circle",
+      "castlePit1_7D": "circle",
+      "castlePit2_7D": "circle",
+      "castlePit1_8D": "circle",
+      "castlePit2_8D": "circle",
+      "castlePit1_9D": "circle",
+      "castlePit2_9D": "circle",
+      "castlePit1_10D": "circle",
+      "castlePit2_10D": "circle",
+      "castlePit1_11D": "circle",
+      "castlePit2_11D": "circle",
+      "castlePit1_12D": "circle",
+      "castlePit2_12D": "circle",
+      "castlePit1_13D": "circle",
+      "castlePit2_13D": "circle",
       "castleFlagAD": "#6a2c91",
       "castleFlagBD": "#22c55e",
       "castleFlagStyleD": "stripes",
@@ -1177,13 +2252,19 @@
       "castleHorse4LfoD": "E",
       "castleHorse4OffsetD": 8,
       "castleRoom": 1,
-      "livingBack": "none",
+      "livingOut": "house",
       "treeBack1": "none",
       "treeBack2": "none",
       "treeBack3": "none",
       "treeBack4": "none",
       "treeBack5": "none",
       "treeBack6": "none",
+      "hatchShape1": "square",
+      "hatchShape2": "square",
+      "hatchShape3": "square",
+      "hatchShape4": "square",
+      "hatchShape5": "square",
+      "hatchShape6": "square",
       "house1": "fox",
       "house2": "owl",
       "house3": "frog",
@@ -1261,7 +2342,6 @@
       "room5": "art",
       "room6": "music",
       "windowSize": 100,
-      "things": 10,
       "witchX": 150,
       "witchY": 0,
       "witchSize": 100,
@@ -1303,6 +2383,17 @@
       "campFood": "none",
       "tents": 2,
       "tent": 1,
+      "crossN": true,
+      "crossNE": false,
+      "crossE": true,
+      "crossSE": false,
+      "crossS": true,
+      "crossSW": false,
+      "crossW": true,
+      "crossNW": false,
+      "crossFloor": "#76843a",
+      "crossBack": "woods",
+      "things": [],
       "starShape": "mix",
       "starSize": 100,
       "starBright": 85,
@@ -1331,7 +2422,34 @@
       "r5pic1": "house",
       "r5pic2": "witch",
       "r6pic1": "cemetery",
-      "r6pic2": "beach"
+      "r6pic2": "beach",
+      "north_forest": 40,
+      "north_underwater": 40,
+      "north_deepsea": 40,
+      "north_witch": 40,
+      "north_cemetery": 40,
+      "north_house": 40,
+      "north_treehouse": 40,
+      "north_clearing": 40,
+      "north_fairyforest": 40,
+      "north_mountains": 40,
+      "north_waterfall": 40,
+      "north_campsite": 40,
+      "north_cave": 40,
+      "north_castle": 40,
+      "north_woodpath": 40,
+      "north_crossing": 40,
+      "north_beach": 40,
+      "north_sea": 40,
+      "north_lake": 40,
+      "north_treeroom": 16,
+      "north_livingroom": 16,
+      "north_witchroom": 16,
+      "north_healerroom": 16,
+      "north_tent": 16,
+      "north_imagination": 16,
+      "north_emptyroom": 16,
+      "north_bubblespace": 16
     },
     "hud": {
       "pins": [],
@@ -1420,7 +2538,8 @@
       "crawlToggle": 5,
       "back": 8,
       "door": 9,
-      "enter": 4
+      "enter": 4,
+      "bubbles": 6
     },
     "music": {
       "track": "scene",
@@ -1430,6 +2549,29 @@
       "transpose": 0,
       "interval": 12,
       "mix": {}
+    },
+    "access": {
+      "allArrows": false,
+      "arrowDim": 45,
+      "arrowColor": "#38bdf8",
+      "arrowSize": 100,
+      "gameFont": 100,
+      "showPath": false,
+      "showSolids": false,
+      "pathColor": "#fde047",
+      "boxColor": "#ef4444",
+      "glowFade": 800,
+      "pathWidth": 4,
+      "boxWidth": 2,
+      "boxFont": 11,
+      "showMadeOf": false,
+      "madeCats": {},
+      "madeFont": 10,
+      "madeColor": "#ffffff",
+      "madeWidth": 2,
+      "clickWalk": true,
+      "clickWalkColor": "#22d3ee",
+      "pathAltColor": "#c084fc"
     }
   }
 }
