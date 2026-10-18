@@ -103,8 +103,12 @@ for (let i = 0; i < plan.length; i += 20) {
     // (ticket 272) the clocks held at 0, set again before each picture: an animation's phase in the drawing (a CSS delay, a
     // SMIL begin) is read from the page's clock, the picture's own (SVG) clock and the music's (the page's, when no music
     // plays), so it differed every run and every animated drawing looked changed; held still, an unchanged drawing
-    // keeps its bytes from run to run, and git stores it once. Nothing in the game waits on the clock.
-    const stillClocks = () => { performance.now = () => 0; const p = document.getElementById("pic");
+    // keeps its bytes from run to run, and git stores it once. Nothing in the game waits on the clock. Its chances
+    // too: Math.random (a figure's clip id, bubble space's bubbles) is a seeded one, from the same seed before each picture.
+    const stillClocks = () => { performance.now = () => 0; window.__duSeed = 272;
+      Math.random = () => { let t = (window.__duSeed = (window.__duSeed + 0x6D2B79F5) | 0);   // (mulberry32)
+        t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      const p = document.getElementById("pic");
       if (p && p.pauseAnimations) { p.pauseAnimations(); p.setCurrentTime(0); } if (typeof picGap !== "undefined") picGap = null; };
     const pic = document.getElementById("pic");
     const svgOf = () => { const c = pic.cloneNode(true), vb = pic.viewBox.baseVal; c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
