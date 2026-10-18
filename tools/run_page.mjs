@@ -30,7 +30,7 @@ export function runPage(manifest, source, run) {
   const tag = tagOf(run), commit = source.commit || "";
   const thumb = m => m.thumb || m.svg;
   const links = m => `<a href="${esc(m.svg)}">svg</a> · <a href="${esc(m.settings)}">settings</a> · <a href="#" data-svg="${esc(m.svg)}" onclick="return png(this)">png</a>`;
-  return `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dress Up pictures, ${esc(run)}</title>
+  return `<!doctype html><meta charset="utf-8"><!-- nav: begin --><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end --><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dress Up pictures, ${esc(run)}</title>
 <style>body{font-family:sans-serif;margin:16px;background:#faf8f3;color:#222} h2{margin:28px 0 8px} .g{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
 figure{margin:0;width:240px} img{width:240px;border:1px solid #ccc;background:#fff} figcaption{font-size:12px} figure.dflt img{border:3px solid #c9a227}
 ul.rest{font-size:13px;color:#555;margin:8px 0 0;padding-left:20px} ul.rest li{margin:2px 0} h3{font-size:14px;margin:12px 0 0;color:#555}</style>
