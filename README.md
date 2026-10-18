@@ -40,4 +40,4 @@ gh run download <run id> -R matthewhammer/kids-choice-games -n pictures -D <an e
 tools/add_run.sh <that folder>
 ```
 
-`add_run.sh` checks the run, puts it in `pictures/`, lists it (`runs_index.mjs`), commits, tags and pushes. The tools: `archive.mjs` (the pictures), `run_page.mjs` (a run's page), `runs_index.mjs` (the list of runs) and `runs.mjs` (what they share), `add_run.sh`, and `site.json` (this archive's title and links).
+`add_run.sh` checks the run, puts it in `pictures/`, lists it (`runs_index.mjs`), commits, tags and pushes. It also records what the run added to git, the thin pack a push of it sends (its files as differences from the run before), in the run's entry in `runs.json` (`added_bytes`); the front page shows each run's and the total. When the workflow has a token that can write here (the Actions secret `ARCHIVE_TOKEN` in kids-choice-games), it runs `add_run.sh` itself, on GitHub, and the run lands with no step on the laptop. The tools: `archive.mjs` (the pictures), `run_page.mjs` (a run's page), `runs_index.mjs` (the list of runs) and `runs.mjs` (what they share), `add_run.sh`, and `site.json` (this archive's title and links).
