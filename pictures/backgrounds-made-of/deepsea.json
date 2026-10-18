@@ -1042,6 +1042,7 @@
       "seat": null,
       "bubbleCount": 30,
       "bubbleWind": 30,
+      "bubbleSeed": 1,
       "bubbleAColor": "#9ad7ff",
       "bubbleASize": 18,
       "bubbleAShine": 70,
