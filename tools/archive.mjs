@@ -113,6 +113,9 @@ for (let i = 0; i < plan.length; i += 20) {
       const p = document.getElementById("pic");
       if (p && p.pauseAnimations) { p.pauseAnimations(); p.setCurrentTime(0); } if (typeof picGap !== "undefined") picGap = null; };
     const pic = document.getElementById("pic");
+    // (a drawing's settings, as the picture file: from 0.0.203 the game's own, its full snapshot without "extra" (ticket 275);
+    // before, the same, written here)
+    const settingsText = () => JSON.stringify(typeof pictureFile === "function" ? pictureFile(snapshotFile()) : { app: "dress-up", version: 1, state }, null, 2);
     const svgOf = () => { const c = pic.cloneNode(true), vb = pic.viewBox.baseVal; c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       c.setAttribute("width", Math.round(vb.width)); c.setAttribute("height", Math.round(vb.height)); c.removeAttribute("style"); c.removeAttribute("class");
       return '<?xml version="1.0" encoding="UTF-8"?>\\n' + new XMLSerializer().serializeToString(c); };
@@ -186,7 +189,7 @@ for (let i = 0; i < plan.length; i += 20) {
         madeShown = ""; solidsShown = ""; madeOfHud(); solidsHud(); await tick();
         const svg = overlaySvg(), ov = overlayParts();
         res.push({ ...s, label: s.label + (ov.legend ? " (" + ov.legend + ")" : ""), hash: h(markup() + "|" + s.overlay + "|" + ov.svgs.join("")), baseHash: null, same: false,
-                   thumb: await overlaySnap(svg), svg, settings: JSON.stringify({ app: "dress-up", version: 1, state }, null, 2) });
+                   thumb: await overlaySnap(svg), svg, settings: settingsText() });
         reset(); changed();
         continue;
       }
@@ -200,12 +203,12 @@ for (let i = 0; i < plan.length; i += 20) {
         climb.got = s.move.at * (climb.all || 0); changed(); await tick();
         const m = markup();
         res.push({ ...s, hash: h(m), baseHash: null, same: false, thumb: await snap(), svg: svgOf(),
-                   settings: JSON.stringify({ app: "dress-up", version: 1, state }, null, 2) });
+                   settings: settingsText() });
         climb = null; reset(); changed();
         continue;
       }
       if (s.defaultOf) { state.background.kind = "none"; changed(); await tick(); const m0 = markup();
-        res.push({ ...s, hash: h(m0), same: false, thumb: await snap(), svg: svgOf(), settings: JSON.stringify({ app: "dress-up", version: 1, state }, null, 2) }); continue; }
+        res.push({ ...s, hash: h(m0), same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() }); continue; }
       if (s.bg) { Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = s.friend ? 100 : 0; }
       else if (s.part === "background") {
         const at = placeFor(s.key);
@@ -237,7 +240,7 @@ for (let i = 0; i < plan.length; i += 20) {
         await tick();
       }
       res.push({ ...s, hash: h(m), baseHash: before !== null ? h(before) : null, same, thumb: same ? null : await snap(), svg: same ? null : svgOf(),
-                 settings: same ? null : JSON.stringify({ app: "dress-up", version: 1, state }, null, 2) });
+                 settings: same ? null : settingsText() });
     }
     return res;
   })()` });
