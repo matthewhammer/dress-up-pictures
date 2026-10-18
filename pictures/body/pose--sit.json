@@ -1052,7 +1052,7 @@
       "poseFootR": 0,
       "feetTurn": 0,
       "pose": "sit",
-      "anim": "walk",
+      "anim": "run",
       "hugLift": 50,
       "jumpShortH": 30,
       "jumpShortS": 150,
