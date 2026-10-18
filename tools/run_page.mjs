@@ -6,11 +6,9 @@
 // archive.mjs writes this page for a new run; replay_dated_runs.mjs wrote it
 // for the runs made before the redesign.
 //   import { runPage } from "./run_page.mjs"; runPage(manifest, source, run)
+import { when, tagOf } from "./runs.mjs";
 const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const nameOf = file => file.replace(/\.svg$/, "");
-// (when a run was made, in Mountain time: "Sat, Oct 17, 2026, 10:41 PM MDT")
-export const when = src => { const t = src && src.made_at && new Date(src.made_at); return t && !isNaN(t) ? new Intl.DateTimeFormat("en-US", { timeZone: "America/Denver", weekday: "short", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).format(t) : null; };
-export const tagOf = run => "run-" + run.replace(/\//g, "-");
 // (the PNG of a drawing, from its SVG: what the archive kept as a file until 2026-10-18)
 export const PNG_SCRIPT = `async function png(a) {
   const old = a.textContent; a.textContent = "making the png…";

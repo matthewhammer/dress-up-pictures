@@ -40,4 +40,4 @@ gh run download <run id> -R matthewhammer/kids-choice-games -n pictures -D <an e
 tools/add_run.sh <that folder>
 ```
 
-`add_run.sh` checks the run, puts it in `pictures/`, lists it (`runs_index.mjs`), commits, tags and pushes. The tools: `archive.mjs` (the pictures), `run_page.mjs` (a run's page), `runs_index.mjs` (the list of runs), `add_run.sh`, and `site.json` (this archive's title and links).
+`add_run.sh` checks the run, puts it in `pictures/`, lists it (`runs_index.mjs`), commits, tags and pushes. The tools: `archive.mjs` (the pictures), `run_page.mjs` (a run's page), `runs_index.mjs` (the list of runs) and `runs.mjs` (what they share), `add_run.sh`, and `site.json` (this archive's title and links).

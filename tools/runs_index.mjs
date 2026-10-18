@@ -12,7 +12,7 @@
 //   node runs_index.mjs <archive root> <run: YYYY/MM/DD[/HH-MM]>
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { when, tagOf } from "./run_page.mjs";
+import { when, tagOf } from "./runs.mjs";
 const [root, run] = process.argv.slice(2);
 if (!run) { console.log("usage: node runs_index.mjs <archive root> <run>"); process.exit(1); }
 const { folder, repo, title, intro, viewer } = JSON.parse(readFileSync(join(root, "tools", "site.json"), "utf8"));
