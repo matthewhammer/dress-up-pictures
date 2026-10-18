@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Not in the picture archive</title>
+<script>
+// (until 2026-10-18 this archive kept a folder per day, YYYY/MM/DD/...; that archive, as it was, is dress-up-pictures-2026-10-18)
+const m = location.pathname.match(/^\/dress-up-pictures\/([0-9]{4}\/.*|days\.json)$/);
+if (m) location.replace("/dress-up-pictures-2026-10-18/" + m[1] + location.search + location.hash);
+</script>
+<style>body{font-family:sans-serif;margin:16px;max-width:820px;background:#faf8f3;color:#222}</style>
+<p>Nothing here. <a href="/dress-up-pictures/">Every run of the picture archive</a>, or the runs up to 2026-10-17 as they were, PNGs and all: <a href="/dress-up-pictures-2026-10-18/">dress-up-pictures-2026-10-18</a>.</p>

@@ -1,0 +1,7 @@
+{
+ "folder": "pictures",
+ "repo": "matthewhammer/dress-up-pictures",
+ "title": "Messed Up Dress Up: every picture, run by run",
+ "intro": "Every picture in <a href=\"https://matthewhammer.org/kids-choice-games/dress-up/\">Messed Up Dress Up</a>, at each run of the archive: every background (with and without the friend; since 2026-10-17 each also with 🔬 🧩 what it is made of and with 🔬 🧱 the collision boxes), every chip menu at its defaults, and the friend climbing each place&rsquo;s ladder. Each drawing is an SVG, its settings (Load opens them in the game) and a thumbnail; the PNG is drawn from the SVG when you ask for it. Every run writes the same paths, so only the newest is on this site: each earlier one is a git tag, which <a href=\"https://matthewhammer.org/hazel/dress-up/pictures.html\">the picture viewer</a> reads. The runs up to 2026-10-17, with their PNGs, are also kept as they were, in <a href=\"https://matthewhammer.org/dress-up-pictures-2026-10-18/\">dress-up-pictures-2026-10-18</a>. 🎵 <a href=\"https://matthewhammer.org/dress-up-music/\">The music</a>.",
+ "viewer": "https://matthewhammer.org/hazel/dress-up/pictures.html"
+}
