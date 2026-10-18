@@ -99,7 +99,13 @@ for (let i = 0; i < plan.length; i += 20) {
     const tick = () => new Promise(r => setTimeout(r, 60)), res = [];
     const h = s => { let x = 0; for (let i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) | 0; return (x >>> 0).toString(16); };
     const reset = () => { for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
-      state.music.mute = true; };   // (the scene's LFO choices at the game's own defaults: a still leaves out their animations)
+      state.music.mute = true; stillClocks(); };   // (the scene's LFO choices at the game's own defaults: a still leaves out their animations)
+    // (ticket 272) the clocks held at 0, set again before each picture: an animation's phase in the drawing (a CSS delay, a
+    // SMIL begin) is read from the page's clock, the picture's own (SVG) clock and the music's (the page's, when no music
+    // plays), so it differed every run and every animated drawing looked changed; held still, an unchanged drawing
+    // keeps its bytes from run to run, and git stores it once. Nothing in the game waits on the clock.
+    const stillClocks = () => { performance.now = () => 0; const p = document.getElementById("pic");
+      if (p && p.pauseAnimations) { p.pauseAnimations(); p.setCurrentTime(0); } if (typeof picGap !== "undefined") picGap = null; };
     const pic = document.getElementById("pic");
     const svgOf = () => { const c = pic.cloneNode(true), vb = pic.viewBox.baseVal; c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       c.setAttribute("width", Math.round(vb.width)); c.setAttribute("height", Math.round(vb.height)); c.removeAttribute("style"); c.removeAttribute("class");
