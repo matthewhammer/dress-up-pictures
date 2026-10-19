@@ -1105,7 +1105,7 @@
     "undies": {
       "on": true,
       "style": "bikini",
-      "top": false,
+      "top": true,
       "color": "#3b82f6",
       "pattern": "plain",
       "patternSize": 14,

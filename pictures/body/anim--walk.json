@@ -1064,7 +1064,7 @@
       "jumpHighS": 75,
       "runSpeed": 100,
       "accel": 0,
-      "facing": "front",
+      "facing": "right",
       "sit": false,
       "turn": ""
     },

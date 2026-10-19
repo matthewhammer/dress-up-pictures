@@ -1100,7 +1100,7 @@
       "pattern": "plain",
       "patternSize": 14,
       "patternColor": "auto",
-      "skirtLen": 50
+      "skirtLen": 95
     },
     "undies": {
       "on": false,
