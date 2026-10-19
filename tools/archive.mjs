@@ -184,7 +184,10 @@ for (let i = 0; i < plan.length; i += 20) {
       // (ticket 262: a background with an overlay of 🔬's on)
       if (s.overlay) {
         Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = s.friend ? 100 : 0;
-        Object.assign(state.access, s.overlay === "made" ? { showMadeOf: true } : { showSolids: true });
+        // (ticket 333's fix, Matthew: "has the 'you' collision box included in each shot -- that's sort of okay, but sort of
+        // confusing -- we are supposed to see the scene without the main char (or their collision boxes)") without the friend,
+        // their own box left out too
+        Object.assign(state.access, s.overlay === "made" ? { showMadeOf: true } : { showSolids: true, solidCats: { ...(state.access.solidCats || {}), you: !!s.friend } });
         changed(); await tick(); await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
         madeShown = ""; solidsShown = ""; madeOfHud(); solidsHud(); await tick();
         const svg = overlaySvg(), ov = overlayParts();
