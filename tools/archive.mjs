@@ -228,7 +228,10 @@ for (let i = 0; i < plan.length; i += 20) {
       changed(); await tick();
       let before = s.part ? markup() : null;
       if (ctx) s.label += " (with " + ctx.label + ")";
-      if (s.part) { state[s.part][s.key] = s.value; changed(); await tick(); }
+      // (kids-choice-games ticket 356: as a player's tap sets it, the game's own set(), so a setting brings what it brings: a pose
+      // its limbs (strikePose: "sit" set alone drew the friend standing, so sit, meditate and dance were archived as standing), an
+      // animation its facing, an animal costume its colors; the background as the archive lays it out itself)
+      if (s.part) { if (s.part !== "background" && typeof set === "function") set(s.part, s.key, s.value); else state[s.part][s.key] = s.value; changed(); await tick(); }
       let m = markup(), same = before !== null && before === m;
       // (the same as the defaults: try one more setting of its tab, under which it shows: spiky teeth with the mouth open)
       if (same && s.part && s.part !== "background" && !ctx) {
