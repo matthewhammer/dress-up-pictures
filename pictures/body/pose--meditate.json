@@ -969,8 +969,12 @@
             }
           ]
         }
-      }
+      },
+      "id": "w1",
+      "name": "start"
     },
+    "worldsAway": {},
+    "worldTemplates": {},
     "face": {
       "color": "#cfa000",
       "size": 46,
@@ -1039,11 +1043,15 @@
       "neckW": 26,
       "arms": 55,
       "elbows": 0,
+      "elbowCurl": 0,
+      "elbowSwing": 0,
       "armLen": 95,
       "armW": 16,
       "legLen": 140,
       "legW": 20,
       "knees": 0,
+      "kneeCurl": 0,
+      "kneeSwing": 0,
       "poseArmL": 30,
       "poseArmR": 30,
       "poseElbowL": -90,
@@ -2979,6 +2987,10 @@
       "crossFloor": "#76843a",
       "crossBack": "woods",
       "things": [],
+      "seaMountains": "none",
+      "seaForest": "none",
+      "seaBeach": false,
+      "seaShoreSize": 100,
       "starShape": "mix",
       "starSize": 100,
       "starBright": 85,
@@ -3167,6 +3179,7 @@
       "arrowColor": "#38bdf8",
       "arrowSize": 100,
       "gameFont": 100,
+      "labelStay": 500,
       "showPath": false,
       "showSolids": false,
       "pathColor": "#fde047",
