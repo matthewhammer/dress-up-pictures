@@ -4,7 +4,8 @@
 // repeated for each castle, room, cat or horse taken once, for the first);
 // and moves the defaults never show (ticket 183): the friend climbing each
 // place's ladder, low, halfway and near the top (the climb set by hand, as
-// the controller sets it, so the hands are where that height puts them).
+// the controller sets it, so the hands are where that height puts them);
+// and the friend on each place's own seats, sitting or lying (ticket 430).
 // Each distinct drawing is three files: <folder>/<setting key>--<value>.svg
 // (the drawing, animations and all), .json beside it (the settings, in the
 // game's own save format: Load opens it) and thumbs/<folder>/<...>.webp (480
@@ -86,11 +87,27 @@ const ladderPlaces = (await send("Runtime.evaluate", { awaitPromise: true, retur
 })()` })).result.result.value || [];
 for (const s of ladderPlaces) for (const [at, word] of [[0.25, "low"], [0.5, "halfway"], [0.8, "near the top"]])
   plan.push({ folder: "moves", name: `climb--${s.name}--${Math.round(at * 100)}`, label: `${s.label}: 🧗 climbing its ladder, ${word}`, bg: s.bg, friend: true, move: { at } });
+// (seats, Dress Up ticket 430, Matthew 2026-10-19: "update dress-up-pictures with the latest pictures (new laying poses, for
+// one)": the friend on each of each place's own seats at the defaults (placeSeats), as a tap on it seats them (sitOn): sitting,
+// or lying where the seat is for lying (a bed, a blanket; the tent's sleeping bags, lying along them, since 0.0.338). A game
+// without seats has none.)
+const seatPlaces = (await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async () => {
+  if (typeof placeSeats !== "function" || typeof sitOn !== "function") return [];
+  const out = [];
+  for (const s of ${JSON.stringify(plan.filter(s => s.folder === "backgrounds-with-friend"))}) {
+    for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
+    state.music.mute = true; Object.assign(state.background, s.bg); changed(); await new Promise(r => setTimeout(r, 60));
+    placeSeats(state.background).forEach((t, i) => out.push({ s, i, name: t.name, lie: !!t.lie }));
+  }
+  return out;
+})()` })).result.result.value || [];
+for (const { s, i, name, lie } of seatPlaces)
+  plan.push({ folder: "seats", name: `seat--${s.name}--${i + 1}`, label: `${s.label}: ${lie ? "🛌 lying on" : "🪑 sitting on"} ${name}`, bg: s.bg, friend: true, seat: i });
 // (ticket 262) each background twice more, with an overlay of 🔬's on
 const OVERLAYS = [["made", "made-of", "🔬 🧩 what it is made of"], ["boxes", "collision-boxes", "🔬 🧱 collision boxes"]];
 for (const s of plan.filter(s => s.folder === "backgrounds" || s.folder === "backgrounds-with-friend"))
   for (const [overlay, suffix, word] of OVERLAYS) plan.push({ ...s, folder: s.folder + "-" + suffix, label: s.label + ": " + word, overlay });
-console.log(plan.length, "pictures planned,", ladderPlaces.length, "places with a ladder");
+console.log(plan.length, "pictures planned,", ladderPlaces.length, "places with a ladder,", seatPlaces.length, "seats");
 // 2. take them, a batch at a time
 const out = [];
 for (let i = 0; i < plan.length; i += 20) {
@@ -193,6 +210,18 @@ for (let i = 0; i < plan.length; i += 20) {
         const svg = overlaySvg(), ov = overlayParts();
         res.push({ ...s, label: s.label + (ov.legend ? " (" + ov.legend + ")" : ""), hash: h(markup() + "|" + s.overlay + "|" + ov.svgs.join("")), baseHash: null, same: false,
                    thumb: await overlaySnap(svg), svg, settings: settingsText() });
+        reset(); changed();
+        continue;
+      }
+      // (a seat: the place at its defaults, the friend on its own seat number s.seat, as a tap on it seats them)
+      if (s.seat !== undefined) {
+        Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = 100;
+        changed(); await tick();
+        const t = placeSeats(state.background)[s.seat];
+        if (!t) { res.push({ ...s, hash: "", same: false, hidden: true, thumb: null, svg: null, settings: null }); reset(); changed(); continue; }
+        sitOn(t); changed(); await tick();
+        const m = markup();
+        res.push({ ...s, hash: h(m), baseHash: null, same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() });
         reset(); changed();
         continue;
       }
