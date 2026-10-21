@@ -36,7 +36,17 @@ await new Promise(r => ws.addEventListener("open", r, { once: true }));
 let n = 0; const pending = new Map(), errs = [];
 ws.addEventListener("message", e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { pending.get(m.id)(m); pending.delete(m.id); }
   if (m.method === "Runtime.exceptionThrown") errs.push(JSON.stringify(m.params.exceptionDetails).slice(0, 300)); });
-const send = (method, params = {}) => new Promise(res => { const i = ++n; pending.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
+// (Dress Up ticket 494: every DevTools call answers or fails. Run 39510534461 sat 2 h 10 min in this step with no
+// output, where a run takes 45 to 50 min: a call that never answers, as in Hazel's slide timing. Now one with no answer
+// in CALL_MS (10 min: a batch of 20 pictures takes well under one), or whose socket closes, is rejected, and the batch
+// loop says which batch hung and fails the run.)
+const CALL_MS = Number(process.env.ARCHIVE_CALL_MS || 600000);
+const fail = why => { for (const p of pending.values()) p.rej(new Error(why)); pending.clear(); };
+ws.addEventListener("close", () => fail("the DevTools socket closed"));
+const send = (method, params = {}) => new Promise((res, rej) => { const i = ++n;
+  const tm = setTimeout(() => { pending.delete(i); rej(new Error(`${method}: no answer in ${CALL_MS} ms`)); }, CALL_MS);
+  pending.set(i, m => { clearTimeout(tm); res(m); }); pending.get(i).rej = e => { clearTimeout(tm); rej(e); };
+  ws.send(JSON.stringify({ id: i, method, params })); });
 await send("Page.enable"); await send("Runtime.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: 1400, height: 1000, deviceScaleFactor: 1, mobile: false });
 await send("Page.navigate", { url: "about:blank" }); await sleep(300);
@@ -278,7 +288,8 @@ for (let i = 0; i < plan.length; i += 20) {
                  settings: same ? null : settingsText() });
     }
     return res;
-  })()` });
+  })()` }).catch(e => { console.log(`\nHUNG in pictures ${i + 1} to ${i + batch.length} of ${plan.length} (the first: ${batch[0].folder}/${batch[0].name}, ${batch[0].label}): ${e.message}`);
+    process.exit(1); });
   if (r.result.exceptionDetails) { console.log("EXC", JSON.stringify(r.result.exceptionDetails).slice(0, 500)); process.exit(1); }
   out.push(...r.result.result.value);
   process.stdout.write(".");
