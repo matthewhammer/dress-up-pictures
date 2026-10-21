@@ -198,13 +198,21 @@ for (let i = 0; i < plan.length; i += 20) {
         P[k2] = old; }
       return "none"; };
     // (a background menu: in the first place where it shows)
-    const placeFor = key => { const f = SHOWN_WHEN["background." + key]; if (!f) return null;
-      for (const [kind] of PLACES) { const b = { ...structuredClone(DEFAULTS.background), kind }; try { if (f(b)) return { kind }; } catch (_) {} }
+    // (Dress Up ticket 494: once per menu for the whole run, and with one copy of the defaults per place, set and put back for
+    // each try. Copying all of them for every try (1,986 settings, 0.6 ms each) made a menu shown nowhere at the defaults (the
+    // sky's, only "by the clock") take minutes each: runs 39510534461 and 39526191544 stopped in that batch.)
+    const placeMemo = window.__archivePlaceFor || (window.__archivePlaceFor = new Map());
+    const placeFor = key => { if (placeMemo.has(key)) return placeMemo.get(key); const r = placeFor0(key); placeMemo.set(key, r); return r; };
+    const placeFor0 = key => { const f = SHOWN_WHEN["background." + key]; if (!f) return null;
+      const bases = PLACES.map(([kind]) => ({ ...structuredClone(DEFAULTS.background), kind }));
+      for (const b of bases) { try { if (f(b)) return { kind: b.kind }; } catch (_) {} }
       // (shown nowhere under the defaults: a place, and one setting of the background's that brings it out there)
       const rows = rowsOf("background");
-      for (const [kind] of PLACES) for (const [k2, label2, opts] of rows) { if (k2 === key) continue;
-        for (const [v2, t2] of opts) { const b = { ...structuredClone(DEFAULTS.background), kind, [k2]: v2 }; let r = false; try { r = f(b); } catch (_) {}
-          if (r) return { kind, ctx: { key: k2, value: v2, label: (label2 ? label2 + ": " : "") + t2 } }; } }
+      for (const b of bases) for (const [k2, label2, opts] of rows) { if (k2 === key) continue;
+        const old = b[k2];
+        for (const [v2, t2] of opts) { b[k2] = v2; let r = false; try { r = f(b); } catch (_) {}
+          if (r) { b[k2] = old; return { kind: b.kind, ctx: { key: k2, value: v2, label: (label2 ? label2 + ": " : "") + t2 } }; } }
+        b[k2] = old; }
       return null; };
     for (const s of ${JSON.stringify(batch)}) {
       reset();
