@@ -1,5 +1,15 @@
 [
  {
+  "run": "2026/10/25/08-15",
+  "tag": "run-2026-10-25-08-15",
+  "when": "Sun, Oct 25, 2026, 8:15 AM MDT",
+  "version": "0.0.429",
+  "commit": "3087f58978373eede700efe09fb1434c4fa0f03f",
+  "made_at": "2026-10-25T08:15:16-06:00",
+  "made_on": "GitHub Actions, Chrome/155.0.8059.39 (matthewhammer/kids-choice-games run 40201327568, ticket 272)",
+  "added_bytes": 425749
+ },
+ {
   "run": "2026/10/25",
   "tag": "run-2026-10-25",
   "when": "Sun, Oct 25, 2026, 7:56 AM MDT",
