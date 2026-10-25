@@ -894,6 +894,11 @@
       "from": null
     },
     "peopleAway": {},
+    "scripts": {
+      "on": false,
+      "common": null,
+      "rooms": {}
+    },
     "face": {
       "color": "#cfa000",
       "size": 46,
@@ -3211,7 +3216,7 @@
       "ninjaGemShape": "round",
       "ninjaEyes": false,
       "ninjaBetween": "skin",
-      "ninjaGlimmer": true,
+      "ninjaGlimmer": false,
       "ninjaGemStars": false,
       "ninjaGemShine": false,
       "sasquatchStyle": "bigfoot",

@@ -971,7 +971,20 @@
         }
       },
       "id": "w1",
-      "name": "start"
+      "name": "start",
+      "off": {
+        "emptyroom": [
+          {
+            "kind": "seagrass",
+            "x": 0,
+            "z": 350,
+            "seed": 1234,
+            "size": 100,
+            "mirror": false,
+            "color": "#4caf50"
+          }
+        ]
+      }
     },
     "worldsAway": {},
     "worldTemplates": {},
@@ -982,6 +995,11 @@
       "from": null
     },
     "peopleAway": {},
+    "scripts": {
+      "on": false,
+      "common": null,
+      "rooms": {}
+    },
     "face": {
       "color": "#cfa000",
       "size": 46,
@@ -1163,10 +1181,10 @@
       "talonCount": 4
     },
     "background": {
-      "kind": "none",
+      "kind": "emptyroom",
       "figSize": 100,
       "figUnit": "scene",
-      "figX": 0,
+      "figX": 400,
       "figY": 0,
       "objectsOff": {},
       "chickenLegs": false,
@@ -3075,7 +3093,17 @@
       "crossNW": false,
       "crossFloor": "#76843a",
       "crossBack": "woods",
-      "things": [],
+      "things": [
+        {
+          "kind": "seagrass",
+          "x": 0,
+          "z": 350,
+          "seed": 1234,
+          "size": 100,
+          "mirror": false,
+          "color": "#4caf50"
+        }
+      ],
       "seaMountains": "none",
       "seaForest": "none",
       "seaBeach": false,
@@ -3160,7 +3188,7 @@
       "min": []
     },
     "costume": {
-      "kind": "ninja",
+      "kind": "none",
       "fur": "#e8862a",
       "marks": "#1f1a17",
       "belly": "#f7ead8",
@@ -3336,13 +3364,13 @@
     },
     "visible": {
       "all": 100,
-      "head": 100,
-      "eyes": 100,
-      "hair": 100,
-      "shirt": 100,
-      "pants": 100,
-      "feet": 100,
-      "hands": 100
+      "head": 0,
+      "eyes": 0,
+      "hair": 0,
+      "shirt": 0,
+      "pants": 0,
+      "feet": 0,
+      "hands": 0
     },
     "controls": {
       "jumpShort": 1,
