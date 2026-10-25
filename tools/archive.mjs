@@ -88,9 +88,12 @@ let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(
   } };
   for (const [tabLabel, part, rows] of TABS) {
     const folder = part === "background" ? "background-menus" : slug(tabLabel) || part;
-    // (each tab's folder opens with the friend at the defaults: what its "same as default" means)
-    if (part !== "background" && part !== "music" && part !== "visible") shots.push({ folder, name: "_default", label: "everything at its default", defaultOf: part, tab: tabLabel });
+    // (each tab's folder opens with the friend at the defaults: what its "same as default" means; 2026-10-25, Matthew: "all
+    // of the chips with count 1 --- are suspect. we are showing screenshots of the friend (game view) not the panel": a tab
+    // with no menus of its own to compare keeps no friend picture, only its panel, below)
+    const at = shots.length;
     walk(rows, part, folder, tabLabel, null);
+    if (shots.length > at && part !== "background" && part !== "music" && part !== "visible") shots.splice(at, 0, { folder, name: "_default", label: "everything at its default", defaultOf: part, tab: tabLabel });
   }
   return shots;
 })()` })).result;
@@ -332,6 +335,32 @@ for (let i = 0; i < plan.length; i += 20) {
   out.push(...r.result.result.value);
   process.stdout.write(".");
 }
+// 2b. (2026-10-25, Matthew: "the point of these chips was the archive the set of panels, as they are in that build") every
+// tab's panel, as this build shows it with the friend at the defaults: a screenshot of the panel alone, its whole height
+// (WebP, as the thumbnails are: no PNG is kept), <tab folder>/_panel.webp, and a 480-wide one in thumbs/. In the manifest:
+// image and thumb, no svg (a panel is HTML, not a drawing of the game's).
+const panels = [];
+{
+  const tabs = (await send("Runtime.evaluate", { returnByValue: true, expression: `(() => {
+    const slug = s => s.replace(/[^A-Za-z0-9]+/g, " ").trim().toLowerCase().replace(/ +/g, "-");
+    return TABS.map(([label, part], i) => ({ i, label, part, folder: part === "background" ? "background-menus" : slug(label) || part })); })()` })).result.result.value;
+  for (const t of tabs) {
+    const r = (await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async () => {
+      state = structuredClone(DEFAULTS); state.music.mute = true; changed();
+      tab = ${t.i}; showTab(); scrollTo(0, 0);
+      await new Promise(r => setTimeout(r, 1500));
+      const p = document.getElementById("panel"); if (!p) return null;
+      const b = p.getBoundingClientRect();
+      return { x: Math.round(b.left + scrollX), y: Math.round(b.top + scrollY), w: Math.round(b.width), h: Math.round(Math.min(b.height, 16000)) }; })()` })).result.result.value;
+    if (!r || r.w < 10 || r.h < 10) { console.log("no panel for", t.label); continue; }
+    const clip = k => ({ x: r.x, y: r.y, width: r.w, height: r.h, scale: k });
+    const full = await send("Page.captureScreenshot", { format: "webp", quality: 82, captureBeyondViewport: true, clip: clip(1) });
+    const small = await send("Page.captureScreenshot", { format: "webp", quality: 80, captureBeyondViewport: true, clip: clip(Math.min(1, 480 / r.w)) });
+    if (!full.result || !small.result) { console.log("panel shot failed for", t.label); continue; }
+    panels.push({ folder: t.folder, name: "_panel", label: "the panel: " + t.label + ", as this build shows it", tab: t.label, full: full.result.data, small: small.result.data });
+    process.stdout.write("p");
+  }
+}
 // 3. files, a manifest, a page: the run's folder written whole beside the old one, then put in its place
 const manifest = [], firstOf = new Map();
 for (const s of out) {
@@ -345,6 +374,14 @@ for (const s of out) {
   manifest.push({ folder: s.folder, name: s.name, label: s.label, tab: s.tab || null, key: s.key || null, value: s.value ?? null, hash: s.hash, sameAsDefault: s.same, onlyWithOtherSettings: !!s.hidden,
                   sameAsFile: s.same ? firstOf.get(s.baseHash) || null : null,
                   svg: file, settings: file && file.replace(/\.svg$/, ".json"), thumb: file && "thumbs/" + file.replace(/\.svg$/, ".webp"), sameDrawingAs: sameAs });
+}
+for (const p of panels) {
+  mkdirSync(join(outDir, p.folder), { recursive: true }); mkdirSync(join(outDir, "thumbs", p.folder), { recursive: true });
+  writeFileSync(join(outDir, p.folder, "_panel.webp"), Buffer.from(p.full, "base64"));
+  writeFileSync(join(outDir, "thumbs", p.folder, "_panel.webp"), Buffer.from(p.small, "base64"));
+  const entry = { folder: p.folder, name: "_panel", label: p.label, tab: p.tab, panel: true, image: `${p.folder}/_panel.webp`, thumb: `thumbs/${p.folder}/_panel.webp`, svg: null, settings: null };
+  const first = manifest.findIndex(m => m.folder === p.folder);
+  if (first < 0) manifest.push(entry); else manifest.splice(first, 0, entry);
 }
 writeFileSync(join(outDir, "manifest.json"), JSON.stringify(manifest, null, 1) + "\n");
 const source = sourceFile ? JSON.parse(readFileSync(sourceFile, "utf8")) : {};
