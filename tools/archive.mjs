@@ -62,6 +62,13 @@ let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(
       shots.push({ folder: friend ? "backgrounds-with-friend" : "backgrounds", name: "castleroom--" + st, label: label + ": " + sl, bg: { kind: "castleroom", castle: "N", castleRoomsN: 6, castleRoom6N: st, castleRoom: 6 }, friend }); continue; }
     for (const friend of [false, true]) shots.push({ folder: friend ? "backgrounds-with-friend" : "backgrounds", name: kind, label, bg: { kind }, friend });
   }
+  // (Hazel ^ticket(609), Matthew 2026-10-25: "a separate appendix ... with every one of those addressable things, as an SVG ... Are they
+  // all available on dress-up-pictures already? If not, we should fix that and use that copy") each kind of thing a place can hold
+  // (THING_KINDS), alone in the empty room, the friend hidden, as the 🏞️ Background tab puts one: its defaults (THING_DEFAULTS),
+  // a fixed seed so the run draws it the same each time
+  for (const [kind, T] of Object.entries(THING_KINDS))
+    shots.push({ folder: "things", name: kind, label: T.label, friend: false,
+      bg: { kind: "emptyroom", figX: 400, things: [{ kind, x: 0, z: SCENE.ground + 30, seed: 1234, size: 100, mirror: false, ...structuredClone(THING_DEFAULTS[kind] || {}) }] } });
   const walk = (rows, part, folder, tabLabel, group) => { for (const row of rows) {
     const [kind, key, label] = row;
     if (kind === "group") { walk(row[3], part, folder, tabLabel, label); continue; }
@@ -113,7 +120,7 @@ const seatPlaces = (await send("Runtime.evaluate", { awaitPromise: true, returnB
 })()` })).result.result.value || [];
 for (const { s, i, name, lie } of seatPlaces)
   plan.push({ folder: "seats", name: `seat--${s.name}--${i + 1}`, label: `${s.label}: ${lie ? "🛌 lying on" : "🪑 sitting on"} ${name}`, bg: s.bg, friend: true, seat: i });
-// (ticket 262) each background twice more, with an overlay of 🔬's on
+// (ticket 262) each background twice more, with an overlay of 🔬's on (the things folder is not a background: no overlays)
 const OVERLAYS = [["made", "made-of", "🔬 🧩 what it is made of"], ["boxes", "collision-boxes", "🔬 🧱 collision boxes"]];
 for (const s of plan.filter(s => s.folder === "backgrounds" || s.folder === "backgrounds-with-friend"))
   for (const [overlay, suffix, word] of OVERLAYS) plan.push({ ...s, folder: s.folder + "-" + suffix, label: s.label + ": " + word, overlay });
