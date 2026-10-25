@@ -69,6 +69,12 @@ let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(
   for (const [kind, T] of Object.entries(THING_KINDS))
     shots.push({ folder: "things", name: kind, label: T.label, friend: false,
       bg: { kind: "emptyroom", figX: 400, things: [{ kind, x: 0, z: SCENE.ground + 30, seed: 1234, size: 100, mirror: false, ...structuredClone(THING_DEFAULTS[kind] || {}) }] } });
+  // (Matthew, 2026-10-25: "why do all of the archive pictures of 'things' all use a blank room for the objects, instead of no background
+  // at all, and cropped more to the thing? The blank room is useful to get a sense of default scale, but maybe we can show them side by
+  // side") each thing again, alone: its own group out of the same drawing, placed as the room places it, cropped to it (things-alone)
+  for (const [kind, T] of Object.entries(THING_KINDS))
+    shots.push({ folder: "things-alone", name: kind, label: T.label + ", alone", friend: false, crop: true,
+      bg: { kind: "emptyroom", figX: 400, things: [{ kind, x: 0, z: SCENE.ground + 30, seed: 1234, size: 100, mirror: false, ...structuredClone(THING_DEFAULTS[kind] || {}) }] } });
   const walk = (rows, part, folder, tabLabel, group) => { for (const row of rows) {
     const [kind, key, label] = row;
     if (kind === "group") { walk(row[3], part, folder, tabLabel, label); continue; }
@@ -263,6 +269,23 @@ for (let i = 0; i < plan.length; i += 20) {
                    settings: settingsText() });
         climb = null; reset(); changed();
         continue;
+      }
+      // (a thing alone: its group, with the drawing's defs and the room's transform to it, its viewBox its bounds and a margin, 2x)
+      if (s.crop) {
+        Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = 0; changed(); await tick();
+        const t = pic.querySelector("g.thing");
+        if (!t) { res.push({ ...s, hash: "", same: false, hidden: true, thumb: null, svg: null, settings: null }); continue; }
+        const toPic = pic.getScreenCTM().inverse().multiply(t.parentNode.getScreenCTM()), own = t.transform.baseVal.consolidate();
+        const mm = own ? toPic.multiply(own.matrix) : toPic, bb = t.getBBox();
+        const pts = [[bb.x, bb.y], [bb.x + bb.width, bb.y], [bb.x, bb.y + bb.height], [bb.x + bb.width, bb.y + bb.height]].map(([x, y]) => new DOMPoint(x, y).matrixTransform(mm));
+        const xs = pts.map(p => p.x), ys = pts.map(p => p.y), pad = 12, x0 = Math.min(...xs) - pad, y0 = Math.min(...ys) - pad;
+        const w = Math.max(...xs) - Math.min(...xs) + 2 * pad, hh = Math.max(...ys) - Math.min(...ys) + 2 * pad;
+        const c = t.cloneNode(true); for (const a of c.querySelectorAll("animate,animateTransform,animateMotion,set")) a.remove();
+        const svg = '<?xml version="1.0" encoding="UTF-8"?>\\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + [x0, y0, w, hh].map(v => v.toFixed(1)).join(" ") + '" width="' + Math.round(w * 2) + '" height="' + Math.round(hh * 2) + '">' +
+          [...pic.querySelectorAll("defs")].map(d => new XMLSerializer().serializeToString(d)).join("") + '<g transform="matrix(' + [toPic.a, toPic.b, toPic.c, toPic.d, toPic.e, toPic.f].map(v => +v.toFixed(4)).join(" ") + ')">' +
+          new XMLSerializer().serializeToString(c) + "</g></svg>";
+        const tw = Math.min(TW, Math.round(w * 2)), th = Math.round(tw * hh / w);
+        res.push({ ...s, hash: h(svg), same: false, thumb: await webpOf(svg, tw, th), svg, settings: settingsText() }); continue;
       }
       if (s.defaultOf) { state.background.kind = "none"; changed(); await tick(); const m0 = markup();
         res.push({ ...s, hash: h(m0), same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() }); continue; }
