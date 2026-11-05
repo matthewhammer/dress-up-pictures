@@ -105,7 +105,8 @@ const ladderPlaces = (await send("Runtime.evaluate", { awaitPromise: true, retur
   if (typeof startClimb !== "function" || typeof bgShown === "undefined") return [];
   const out = [];
   for (const s of ${JSON.stringify(plan.filter(s => s.folder === "backgrounds-with-friend"))}) {
-    for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
+    // (a list, the 🎒 backpack, replaced whole: its entries deleted one by one leave holes, which the game's items read as undefined since Dress Up 0.0.479; kids-choice-games ticket 689)
+    for (const [p, v] of Object.entries(DEFAULTS)) if (Array.isArray(v)) state[p] = structuredClone(v); else if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
     state.music.mute = true; Object.assign(state.background, s.bg); changed(); await new Promise(r => setTimeout(r, 60));
     if (bgShown.node && bgShown.node.querySelector("[data-ladder]")) out.push(s);
   }
@@ -121,7 +122,7 @@ const seatPlaces = (await send("Runtime.evaluate", { awaitPromise: true, returnB
   if (typeof placeSeats !== "function" || typeof sitOn !== "function") return [];
   const out = [];
   for (const s of ${JSON.stringify(plan.filter(s => s.folder === "backgrounds-with-friend"))}) {
-    for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
+    for (const [p, v] of Object.entries(DEFAULTS)) if (Array.isArray(v)) state[p] = structuredClone(v); else if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
     state.music.mute = true; Object.assign(state.background, s.bg); changed(); await new Promise(r => setTimeout(r, 60));
     placeSeats(state.background).forEach((t, i) => out.push({ s, i, name: t.name, lie: !!t.lie }));
   }
@@ -141,7 +142,7 @@ for (let i = 0; i < plan.length; i += 20) {
   const r = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async () => {
     const tick = () => new Promise(r => setTimeout(r, 60)), res = [];
     const h = s => { let x = 0; for (let i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) | 0; return (x >>> 0).toString(16); };
-    const reset = () => { for (const [p, v] of Object.entries(DEFAULTS)) if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
+    const reset = () => { for (const [p, v] of Object.entries(DEFAULTS)) if (Array.isArray(v)) state[p] = structuredClone(v); else if (state[p] && typeof v === "object") { for (const key of Object.keys(state[p])) delete state[p][key]; Object.assign(state[p], structuredClone(v)); }
       state.music.mute = true; stillClocks(); };   // (the scene's LFO choices at the game's own defaults: a still leaves out their animations)
     // (ticket 272) the clocks held at 0, set again before each picture: an animation's phase in the drawing (a CSS delay, a
     // SMIL begin) is read from the page's clock, the picture's own (SVG) clock and the music's (the page's, when no music
