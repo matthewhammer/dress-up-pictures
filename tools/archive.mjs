@@ -50,6 +50,12 @@ const send = (method, params = {}) => new Promise((res, rej) => { const i = ++n;
 await send("Page.enable"); await send("Runtime.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: 1400, height: 1000, deviceScaleFactor: 1, mobile: false });
 await send("Page.navigate", { url: "about:blank" }); await sleep(300);
+// (ticket 818, 2026-11-21) Math.random seeded from the page's first line, and again before each picture (stillClocks): the
+// passages the game makes as it loads (a passage's uid, its twin's) and a passage drawn in a picture took random ids, so
+// a run of an unchanged game rewrote every settings file and every picture with a passage
+await send("Page.addScriptToEvaluateOnNewDocument", { source: `window.__duReseed = () => { window.__duSeed = 272; }; window.__duReseed();
+  Math.random = () => { let t = (window.__duSeed = (window.__duSeed + 0x6D2B79F5) | 0);   // (mulberry32, as stillClocks' own)
+    t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };` });
 await send("Page.navigate", { url }); await sleep(4000);
 // 1. the list of pictures to take, from the page's own menus
 let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(() => {
@@ -151,7 +157,11 @@ for (let i = 0; i < plan.length; i += 20) {
     // too: Math.random (a figure's clip id, bubble space's bubbles) is a seeded one, from the same seed before each picture.
     // (since the game's 0.0.202, ticket 274: the game holds its own picture still, holdStill(0), and draws from its
     // settings alone; the overrides below are for drawing again with an older version of the game)
-    const stillClocks = () => { if (typeof holdStill === "function") { holdStill(0); return; } performance.now = () => 0; window.__duSeed = 272;
+    // (ticket 818, 2026-11-21) a picture without the friend: every part hidden, and the items in 🔹 and 🔸 too (🫧 and 🔥
+    // by default, ticket 687), which the game draws in the hands even with the hands hidden: they floated in every
+    // picture without the friend (the backgrounds, their menus, the things)
+    const showFriend = on => { for (const g of VISIBLE_PARTS) state.visible[g] = on ? 100 : 0; if (!on && state.pack) state.pack = { ...state.pack, a: "", b: "" }; };
+    const stillClocks = () => { if (window.__duReseed) window.__duReseed(); if (typeof holdStill === "function") { holdStill(0); return; } performance.now = () => 0; window.__duSeed = 272;
       Math.random = () => { let t = (window.__duSeed = (window.__duSeed + 0x6D2B79F5) | 0);   // (mulberry32)
         t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
       const p = document.getElementById("pic");
@@ -235,7 +245,7 @@ for (let i = 0; i < plan.length; i += 20) {
       reset();
       // (ticket 262: a background with an overlay of 🔬's on)
       if (s.overlay) {
-        Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = s.friend ? 100 : 0;
+        Object.assign(state.background, s.bg); showFriend(s.friend);
         // (ticket 333's fix, Matthew: "has the 'you' collision box included in each shot -- that's sort of okay, but sort of
         // confusing -- we are supposed to see the scene without the main char (or their collision boxes)") without the friend,
         // their own box left out too
@@ -276,7 +286,7 @@ for (let i = 0; i < plan.length; i += 20) {
       }
       // (a thing alone: its group, with the drawing's defs and the room's transform to it, its viewBox its bounds and a margin, 2x)
       if (s.crop) {
-        Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = 0; changed(); await tick();
+        Object.assign(state.background, s.bg); showFriend(false); changed(); await tick();
         const t = pic.querySelector("g.thing");
         if (!t) { res.push({ ...s, hash: "", same: false, hidden: true, thumb: null, svg: null, settings: null }); continue; }
         const toPic = pic.getScreenCTM().inverse().multiply(t.parentNode.getScreenCTM()), own = t.transform.baseVal.consolidate();
@@ -293,12 +303,12 @@ for (let i = 0; i < plan.length; i += 20) {
       }
       if (s.defaultOf) { state.background.kind = "none"; changed(); await tick(); const m0 = markup();
         res.push({ ...s, hash: h(m0), same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() }); continue; }
-      if (s.bg) { Object.assign(state.background, s.bg); for (const g of VISIBLE_PARTS) state.visible[g] = s.friend ? 100 : 0; }
+      if (s.bg) { Object.assign(state.background, s.bg); showFriend(s.friend); }
       else if (s.part === "background") {
         const at = placeFor(s.key);
         // (a menu that shows nowhere, even with one more setting chosen: noted, no picture)
         if (!at) { res.push({ ...s, hash: "", same: false, hidden: true, thumb: null, svg: null, settings: null }); continue; }
-        state.background.kind = at.kind; for (const g of VISIBLE_PARTS) state.visible[g] = 0;
+        state.background.kind = at.kind; showFriend(false);
         if (at.ctx) { state.background[at.ctx.key] = at.ctx.value; s.label += " (with " + at.ctx.label + ")"; }
       }
       else state.background.kind = "none";
