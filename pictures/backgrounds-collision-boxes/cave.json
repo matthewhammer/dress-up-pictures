@@ -8,103 +8,12 @@
       "start": "3,3",
       "cells": {
         "0,0": {
-          "kind": "deepsea",
+          "kind": "sea",
           "ways": [
             "E",
             "S"
           ],
-          "things": [
-            {
-              "kind": "shell",
-              "x": -282,
-              "z": 325,
-              "seed": 1334,
-              "size": 100,
-              "mirror": false,
-              "shape": "clam",
-              "color": "#ffffff"
-            },
-            {
-              "kind": "shell",
-              "x": 308,
-              "z": 327,
-              "seed": 7663,
-              "size": 100,
-              "mirror": false,
-              "shape": "conch",
-              "color": "#fdba74"
-            },
-            {
-              "kind": "shell",
-              "x": 125,
-              "z": 388,
-              "seed": 2019,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": -203,
-              "z": 347,
-              "seed": 2932,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": -10,
-              "z": 376,
-              "seed": 2653,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": 182,
-              "z": 335,
-              "seed": 9180,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": -146,
-              "z": 364,
-              "seed": 3121,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": -51,
-              "z": 400,
-              "seed": 2749,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            },
-            {
-              "kind": "shell",
-              "x": 239,
-              "z": 352,
-              "seed": 8125,
-              "size": 100,
-              "mirror": false,
-              "shape": "scallop",
-              "color": "#f8e1c7"
-            }
-          ]
+          "things": []
         },
         "1,0": {
           "kind": "sea",
@@ -176,7 +85,7 @@
           "things": []
         },
         "0,2": {
-          "kind": "deepsea",
+          "kind": "sea",
           "ways": [
             "N",
             "S"
@@ -231,121 +140,11 @@
           "things": []
         },
         "0,3": {
-          "kind": "deepsea",
+          "kind": "sea",
           "ways": [
             "N"
           ],
-          "things": [
-            {
-              "kind": "chest",
-              "x": -260,
-              "z": 330,
-              "seed": 71399,
-              "size": 100,
-              "mirror": false,
-              "open": false
-            },
-            {
-              "kind": "chest",
-              "x": 309,
-              "z": 392,
-              "seed": 20207,
-              "size": 145,
-              "mirror": true,
-              "open": false
-            },
-            {
-              "kind": "chest",
-              "x": 192,
-              "z": 372,
-              "seed": 7656,
-              "size": 100,
-              "mirror": false,
-              "open": false
-            },
-            {
-              "kind": "chest",
-              "x": -286,
-              "z": 402,
-              "seed": 8337,
-              "size": 100,
-              "mirror": false,
-              "open": false
-            },
-            {
-              "kind": "kelp",
-              "x": -10,
-              "z": 376,
-              "seed": 8207,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "kelp",
-              "x": 182,
-              "z": 335,
-              "seed": 8954,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "kelp",
-              "x": -146,
-              "z": 364,
-              "seed": 6851,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "kelp",
-              "x": 47,
-              "z": 393,
-              "seed": 2290,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "kelp",
-              "x": 239,
-              "z": 352,
-              "seed": 8251,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "kelp",
-              "x": -338,
-              "z": 406,
-              "seed": 7807,
-              "size": 100,
-              "mirror": false,
-              "color": "#2f8f4e"
-            },
-            {
-              "kind": "starfish",
-              "x": 104,
-              "z": 340,
-              "seed": 6691,
-              "size": 100,
-              "mirror": false,
-              "color": "#fb923c"
-            },
-            {
-              "kind": "seafish",
-              "x": -224,
-              "z": 369,
-              "seed": 6711,
-              "size": 100,
-              "mirror": false,
-              "color": "#ff9f1c",
-              "bubbles": true
-            }
-          ]
+          "things": []
         },
         "1,3": {
           "kind": "crossing",
@@ -420,17 +219,17 @@
               "style": "floorhole",
               "x": -70,
               "z": 320,
-              "seed": 4002,
+              "seed": 4003,
               "size": 100,
               "mirror": false,
               "to": "dungeon",
-              "uid": "pe87d3p",
+              "uid": "p207g1n",
               "dest": {
-                "world": "w2",
+                "world": "w3",
                 "key": "7,0",
                 "kind": "dungeon"
               },
-              "twin": "ph59b85",
+              "twin": "p50s1hr",
               "hidden": true
             }
           ]
@@ -568,50 +367,13 @@
           "things": []
         },
         "0,1": {
-          "kind": "deepsea",
+          "kind": "sea",
           "ways": [
             "N",
             "NE",
             "S"
           ],
-          "things": [
-            {
-              "kind": "seagrass",
-              "x": -260,
-              "z": 330,
-              "seed": 8167,
-              "size": 100,
-              "mirror": false,
-              "color": "#4caf50"
-            },
-            {
-              "kind": "seafan",
-              "x": 245,
-              "z": 340,
-              "seed": 3582,
-              "size": 100,
-              "mirror": false,
-              "color": "#c084fc"
-            },
-            {
-              "kind": "sealettuce",
-              "x": 138,
-              "z": 368,
-              "seed": 5171,
-              "size": 100,
-              "mirror": false,
-              "color": "#8bc34a"
-            },
-            {
-              "kind": "coral",
-              "x": -235,
-              "z": 370,
-              "seed": 38069,
-              "size": 100,
-              "mirror": true,
-              "color": "#fde047"
-            }
-          ]
+          "things": []
         },
         "0,4": {
           "kind": "waterfall",
@@ -830,17 +592,17 @@
               "style": "floorhole",
               "x": 140,
               "z": 340,
-              "seed": 4002,
+              "seed": 4003,
               "size": 100,
               "mirror": false,
               "to": "dungeon",
-              "uid": "p11aac9",
+              "uid": "psc4v4h",
               "dest": {
-                "world": "w2",
+                "world": "w3",
                 "key": "0,7",
                 "kind": "dungeon"
               },
-              "twin": "pxi3x4n"
+              "twin": "phtph89"
             }
           ]
         },
@@ -1008,7 +770,8 @@
         }
       },
       "id": "w1",
-      "name": "start"
+      "name": "start",
+      "below": "w2"
     },
     "backpack": [],
     "pack": {
@@ -1021,6 +784,529 @@
     },
     "worldsAway": {
       "w2": {
+        "id": "w2",
+        "name": "deep ocean",
+        "ocean": true,
+        "cols": 6,
+        "rows": 7,
+        "cells": {
+          "0,0": {
+            "kind": "deepsea",
+            "ways": [
+              "E",
+              "S"
+            ],
+            "things": [
+              {
+                "kind": "shell",
+                "x": -282,
+                "z": 325,
+                "seed": 1334,
+                "size": 100,
+                "mirror": false,
+                "shape": "clam",
+                "color": "#ffffff"
+              },
+              {
+                "kind": "shell",
+                "x": 308,
+                "z": 327,
+                "seed": 7663,
+                "size": 100,
+                "mirror": false,
+                "shape": "conch",
+                "color": "#fdba74"
+              },
+              {
+                "kind": "shell",
+                "x": 125,
+                "z": 388,
+                "seed": 2019,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": -203,
+                "z": 347,
+                "seed": 2932,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": -10,
+                "z": 376,
+                "seed": 2653,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": 182,
+                "z": 335,
+                "seed": 9180,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": -146,
+                "z": 364,
+                "seed": 3121,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": -51,
+                "z": 400,
+                "seed": 2749,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "kind": "shell",
+                "x": 239,
+                "z": 352,
+                "seed": 8125,
+                "size": 100,
+                "mirror": false,
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              }
+            ]
+          },
+          "1,0": {
+            "kind": "deepsea",
+            "ways": [
+              "E",
+              "SW",
+              "W"
+            ],
+            "things": [
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 8936,
+                "x": -200,
+                "z": 342,
+                "kind": "shell",
+                "shape": "scallop",
+                "color": "#f8e1c7"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 8162,
+                "x": -76,
+                "z": 335,
+                "kind": "coral",
+                "color": "#fde047"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 2910,
+                "x": 107,
+                "z": 366,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 8276,
+                "x": 294,
+                "z": 367,
+                "kind": "seafish",
+                "color": "#ff9f1c",
+                "bubbles": true
+              }
+            ]
+          },
+          "2,0": {
+            "kind": "deepsea",
+            "ways": [
+              "E",
+              "W"
+            ],
+            "things": [
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 5729,
+                "x": -250,
+                "z": 395,
+                "kind": "seafish",
+                "color": "#ff9f1c",
+                "bubbles": true
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 2188,
+                "x": -154,
+                "z": 374,
+                "kind": "seagrass",
+                "color": "#4caf50"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 3728,
+                "x": -33,
+                "z": 371,
+                "kind": "starfish",
+                "color": "#fb923c"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 9316,
+                "x": 147,
+                "z": 397,
+                "kind": "seagrass",
+                "color": "#4caf50"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 3949,
+                "x": 243,
+                "z": 335,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              }
+            ]
+          },
+          "3,0": {
+            "kind": "deepsea",
+            "ways": [
+              "E",
+              "W"
+            ],
+            "things": [
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 5401,
+                "x": -258,
+                "z": 340,
+                "kind": "starfish",
+                "color": "#fb923c"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 5858,
+                "x": -102,
+                "z": 404,
+                "kind": "seagrass",
+                "color": "#4caf50"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 7356,
+                "x": 34,
+                "z": 336,
+                "kind": "starfish",
+                "color": "#fb923c"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 3534,
+                "x": 148,
+                "z": 330,
+                "kind": "shell",
+                "shape": "conch",
+                "color": "#fdba74"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 2290,
+                "x": 282,
+                "z": 350,
+                "kind": "seagrass",
+                "color": "#4caf50"
+              }
+            ]
+          },
+          "4,0": {
+            "kind": "deepsea",
+            "ways": [
+              "W"
+            ],
+            "things": [
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 9327,
+                "x": -279,
+                "z": 347,
+                "kind": "seafish",
+                "color": "#ff9f1c",
+                "bubbles": true
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 6790,
+                "x": -37,
+                "z": 353,
+                "kind": "shell",
+                "shape": "conch",
+                "color": "#fdba74"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 3641,
+                "x": 42,
+                "z": 333,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 7123,
+                "x": 209,
+                "z": 371,
+                "kind": "kelp",
+                "color": "#3f9f5e"
+              }
+            ]
+          },
+          "0,2": {
+            "kind": "deepsea",
+            "ways": [
+              "N",
+              "S"
+            ],
+            "things": [
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 9259,
+                "x": -243,
+                "z": 398,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 4514,
+                "x": -65,
+                "z": 325,
+                "kind": "shell",
+                "shape": "conch",
+                "color": "#fdba74"
+              },
+              {
+                "size": 100,
+                "mirror": false,
+                "seed": 3629,
+                "x": 112,
+                "z": 387,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              },
+              {
+                "size": 100,
+                "mirror": true,
+                "seed": 3678,
+                "x": 213,
+                "z": 400,
+                "kind": "kelp",
+                "color": "#2f8f4e"
+              }
+            ]
+          },
+          "0,3": {
+            "kind": "deepsea",
+            "ways": [
+              "N"
+            ],
+            "things": [
+              {
+                "kind": "chest",
+                "x": -260,
+                "z": 330,
+                "seed": 71399,
+                "size": 100,
+                "mirror": false,
+                "open": false
+              },
+              {
+                "kind": "chest",
+                "x": 309,
+                "z": 392,
+                "seed": 20207,
+                "size": 145,
+                "mirror": true,
+                "open": false
+              },
+              {
+                "kind": "chest",
+                "x": 192,
+                "z": 372,
+                "seed": 7656,
+                "size": 100,
+                "mirror": false,
+                "open": false
+              },
+              {
+                "kind": "chest",
+                "x": -286,
+                "z": 402,
+                "seed": 8337,
+                "size": 100,
+                "mirror": false,
+                "open": false
+              },
+              {
+                "kind": "kelp",
+                "x": -10,
+                "z": 376,
+                "seed": 8207,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "kelp",
+                "x": 182,
+                "z": 335,
+                "seed": 8954,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "kelp",
+                "x": -146,
+                "z": 364,
+                "seed": 6851,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "kelp",
+                "x": 47,
+                "z": 393,
+                "seed": 2290,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "kelp",
+                "x": 239,
+                "z": 352,
+                "seed": 8251,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "kelp",
+                "x": -338,
+                "z": 406,
+                "seed": 7807,
+                "size": 100,
+                "mirror": false,
+                "color": "#2f8f4e"
+              },
+              {
+                "kind": "starfish",
+                "x": 104,
+                "z": 340,
+                "seed": 6691,
+                "size": 100,
+                "mirror": false,
+                "color": "#fb923c"
+              },
+              {
+                "kind": "seafish",
+                "x": -224,
+                "z": 369,
+                "seed": 6711,
+                "size": 100,
+                "mirror": false,
+                "color": "#ff9f1c",
+                "bubbles": true
+              }
+            ]
+          },
+          "0,1": {
+            "kind": "deepsea",
+            "ways": [
+              "N",
+              "NE",
+              "S"
+            ],
+            "things": [
+              {
+                "kind": "seagrass",
+                "x": -260,
+                "z": 330,
+                "seed": 8167,
+                "size": 100,
+                "mirror": false,
+                "color": "#4caf50"
+              },
+              {
+                "kind": "seafan",
+                "x": 245,
+                "z": 340,
+                "seed": 3582,
+                "size": 100,
+                "mirror": false,
+                "color": "#c084fc"
+              },
+              {
+                "kind": "sealettuce",
+                "x": 138,
+                "z": 368,
+                "seed": 5171,
+                "size": 100,
+                "mirror": false,
+                "color": "#8bc34a"
+              },
+              {
+                "kind": "coral",
+                "x": -235,
+                "z": 370,
+                "seed": 38069,
+                "size": 100,
+                "mirror": true,
+                "color": "#fde047"
+              }
+            ]
+          }
+        },
+        "at": "0,0",
+        "start": "0,0"
+      },
+      "w3": {
         "name": "dungeon",
         "cols": 8,
         "rows": 8,
@@ -1332,8 +1618,8 @@
                 "z": 230,
                 "uid": "dg-out-switch",
                 "shows": [
-                  "ph59b85",
-                  "pe87d3p"
+                  "p50s1hr",
+                  "p207g1n"
                 ]
               },
               {
@@ -1344,7 +1630,7 @@
                 "style": "ladder",
                 "x": 280,
                 "z": 210,
-                "uid": "ph59b85",
+                "uid": "p50s1hr",
                 "to": "castle",
                 "hidden": true,
                 "dest": {
@@ -1352,7 +1638,7 @@
                   "key": "4,3",
                   "kind": "castle"
                 },
-                "twin": "pe87d3p"
+                "twin": "p207g1n"
               }
             ]
           },
@@ -2661,14 +2947,14 @@
                 "style": "ladder",
                 "x": 150,
                 "z": 150,
-                "uid": "pxi3x4n",
+                "uid": "phtph89",
                 "to": "cemetery",
                 "dest": {
                   "world": "w1",
                   "key": "2,5",
                   "kind": "cemetery"
                 },
-                "twin": "p11aac9"
+                "twin": "psc4v4h"
               }
             ]
           },
@@ -2848,11 +3134,14 @@
             "things": []
           }
         },
-        "id": "w2"
+        "id": "w3"
       }
     },
     "worldTemplates": {},
     "dungeon": {
+      "made": true
+    },
+    "deepOcean": {
       "made": true
     },
     "person": {
@@ -2875,6 +3164,12 @@
     "regrow": {
       "on": true,
       "minutes": 2
+    },
+    "weather": {
+      "on": false,
+      "seed": 723,
+      "pick": "auto",
+      "pickDay": ""
     },
     "face": {
       "color": "#cfa000",
@@ -2937,6 +3232,9 @@
       "braidWidth": 100
     },
     "body": {
+      "rocket": "none",
+      "rocketStyle": "aries",
+      "catCoat": 1,
       "horse": "none",
       "horseCoat": "#7b4a2a",
       "horseMane": "#1f1f22",
@@ -4935,6 +5233,17 @@
       "farLake": true,
       "pastureHorses": 3,
       "pastureFlowers": 10,
+      "alienSky": "dusk",
+      "alienPeople": 2,
+      "alienAnimals": true,
+      "universe": "people",
+      "spaceSeed": 1,
+      "spaceStars": 700,
+      "spaceNebula": "violet",
+      "spacePlanet": "ringed",
+      "spacePlanetSize": 34,
+      "spacePlanetX": 72,
+      "spaceMoons": 2,
       "gardenBeds": 4,
       "springFrogs": 2,
       "springBubbles": 5,
@@ -5053,9 +5362,16 @@
       "north_farmyard": 40,
       "north_garden": 40,
       "north_spring": 40,
+      "north_alienplanet": 40,
       "north_treeroom": 16,
       "north_treetop": 16,
       "north_livingroom": 16,
+      "north_diningroom": 16,
+      "north_kitchen": 16,
+      "north_stairhall": 16,
+      "north_bedroom": 16,
+      "north_laundry": 16,
+      "north_furnace": 16,
       "north_witchroom": 16,
       "north_healerroom": 16,
       "north_hutroom": 16,
@@ -5067,7 +5383,15 @@
       "north_emptyroom": 16,
       "north_bubblespace": 16,
       "north_bubbleroom": 16,
-      "north_caveroom": 16
+      "north_caveroom": 16,
+      "north_starfield": 16,
+      "north_blackhole": 16,
+      "north_bridge": 16,
+      "north_stationlab": 16,
+      "north_stationgarden": 16,
+      "north_stationbunks": 16,
+      "north_stationkitchen": 16,
+      "north_stationmess": 16
     },
     "hud": {
       "pins": [],
@@ -5276,7 +5600,8 @@
       "useB": 7,
       "items": 9,
       "throw": 1,
-      "act": 4
+      "act": 4,
+      "team": -1
     },
     "music": {
       "track": "scene",
