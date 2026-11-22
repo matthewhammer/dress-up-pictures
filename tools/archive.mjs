@@ -169,7 +169,10 @@ for (let i = 0; i < plan.length; i += 20) {
     const pic = document.getElementById("pic");
     // (a drawing's settings, as the picture file: from 0.0.203 the game's own, its full snapshot without "extra" (ticket 275);
     // before, the same, written here)
-    const settingsText = () => JSON.stringify(typeof pictureFile === "function" ? pictureFile(snapshotFile()) : { app: "dress-up", version: 1, state }, null, 2);
+    // (ticket 818, 2026-11-21) and without the time a backpack's thing was got (Date.now(), as a costume adds its props), as
+    // without the save's time: read by nothing in the game, it changed every settings file with a costume, every run
+    const settingsText = () => JSON.stringify(typeof pictureFile === "function" ? pictureFile(snapshotFile()) : { app: "dress-up", version: 1, state },
+      (k, v) => k === "got" && typeof v === "number" && v > 1e12 ? 0 : v, 2);
     const svgOf = () => { const c = pic.cloneNode(true), vb = pic.viewBox.baseVal; c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       c.setAttribute("width", Math.round(vb.width)); c.setAttribute("height", Math.round(vb.height)); c.removeAttribute("style"); c.removeAttribute("class");
       return '<?xml version="1.0" encoding="UTF-8"?>\\n' + new XMLSerializer().serializeToString(c); };
