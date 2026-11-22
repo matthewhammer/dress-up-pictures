@@ -57,6 +57,10 @@ await send("Page.addScriptToEvaluateOnNewDocument", { source: `window.__duReseed
   Math.random = () => { let t = (window.__duSeed = (window.__duSeed + 0x6D2B79F5) | 0);   // (mulberry32, as stillClocks' own)
     t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };` });
 await send("Page.navigate", { url }); await sleep(4000);
+// (ticket 818, 2026-11-21) the game's clocks held still before the list is made, not only before each picture: making the
+// list draws scenes (a menu looked for in each place), and the game kept those scenes, their LFOs begun by the running
+// clock, for the pictures (the space station's kitchen, a step apart from run to run)
+await send("Runtime.evaluate", { expression: `typeof holdStill === "function" && holdStill(0)` });
 // 1. the list of pictures to take, from the page's own menus
 let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(() => {
   const slug = s => s.replace(/[^A-Za-z0-9]+/g, " ").trim().toLowerCase().replace(/ +/g, "-");
