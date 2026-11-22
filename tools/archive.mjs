@@ -318,6 +318,12 @@ for (let i = 0; i < plan.length; i += 20) {
         for (let k = 0; k < 80; k++) { changed(); await tick();
           shown = [...pic.querySelectorAll("g.person-placed")].filter(g => g.style.display !== "none").length;
           if (k >= 8 && shown >= want && !personBusy && !personWanted) break; }
+        // (and each set where the line puts them, the walk in done: they ease in frame by frame and stop within half a unit of
+        // their place, so how near each had come depended on the computer, and the picture and its settings changed run to run)
+        if (!s.rocket && typeof teamAt === "function") { const gap = teamGap(), here = personHere();
+          teamOf().forEach((P, i) => { const [tx, ty] = teamAt((i + 1) * gap), R = teamRun.get(P.id); if (!R) return;
+            Object.assign(R, { x: tx, y: ty, bob: 0, still: 1, wait: 0, v: "face:" + (here && here.x > tx + 4 ? "right" : here && here.x < tx - 4 ? "left" : R.dir) });
+            if (P.place) Object.assign(P.place, { x: tx, y: ty }); }); }
         stillClocks(); changed(); await tick();
         const m = markup();
         res.push({ ...s, label: s.label + (shown < want ? " (" + shown + " of " + want + " drawn)" : ""), hash: h(m), same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() }); continue;
