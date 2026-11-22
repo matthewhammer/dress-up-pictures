@@ -85,6 +85,20 @@ let plan = (await send("Runtime.evaluate", { returnByValue: true, expression: `(
   for (const [kind, T] of Object.entries(THING_KINDS))
     shots.push({ folder: "things-alone", name: kind, label: T.label + ", alone", friend: false, crop: true,
       bg: { kind: "emptyroom", figX: 400, things: [{ kind, x: 0, z: SCENE.ground + 30, seed: 1234, size: 100, mirror: false, ...structuredClone(THING_DEFAULTS[kind] || {}) }] } });
+  // (ticket 819, 2026-11-21) the team: each kind of person 👥 People makes, on the friend's team, beside them on the start world's
+  // first square (a place, so they are put there): the greys, each size, with and without hair, and the eight jumpsuits; the
+  // cats, a coat each; a person from the friend; a person in each costume (played, the friend beside them); and the team in the
+  // rocket, at its portholes
+  if (typeof personNewGrey === "function" && typeof worldEnter === "function") {
+    for (const size of Object.keys(GREY_SIZES)) for (const hair of [false, true])
+      shots.push({ folder: "team", name: "grey--" + size + (hair ? "--hair" : ""), label: "👽 a " + size + " grey" + (hair ? ", blond hair" : ""), team: [["grey", size, hair, GREY_SUITS[0][1]]] });
+    shots.push({ folder: "team", name: "greys--jumpsuits", label: "👽 eight greys, a jumpsuit each", team: GREY_SUITS.map(([, c]) => ["grey", "medium", false, c]) });
+    shots.push({ folder: "team", name: "cats", label: "🐱 the cats, a coat each", team: CAT_COATS.map(() => ["cat"]) });
+    shots.push({ folder: "team", name: "person", label: "👤 a person from the friend", team: [["person"]] });
+    for (const [kind, label] of personCostumes())
+      shots.push({ folder: "team", name: "costume--" + kind, label: "👤 a new person as " + label + ", the friend beside them", team: [["costume", kind, label]] });
+    shots.push({ folder: "team", name: "rocket", label: "🚀 the team in the rocket: a grey, a cat and a person", rocket: "ride", team: [["grey", "medium", true, GREY_SUITS[0][1]], ["cat"], ["person"]] });
+  }
   const walk = (rows, part, folder, tabLabel, group) => { for (const row of rows) {
     const [kind, key, label] = row;
     if (kind === "group") { walk(row[3], part, folder, tabLabel, label); continue; }
@@ -292,6 +306,22 @@ for (let i = 0; i < plan.length; i += 20) {
         continue;
       }
       // (a thing alone: its group, with the drawing's defs and the room's transform to it, its viewBox its bounds and a margin, 2x)
+      // (ticket 819) the team: made as 👥 People makes them, on the start world's first square; then the game's own drawing of
+      // them, which comes a moment later (a person's figure is drawn off the page, a few at a time), waited for
+      if (s.team) {
+        worldsInit(); worldEnter(state.world.start); showFriend(true); personNodes.clear(); teamRun.clear();
+        for (const [kind, a, b, c] of s.team) kind === "grey" ? personNewGrey(a, b, c) : kind === "cat" ? personNewCat() : kind === "costume" ? personNewCostume(a, b) : personNew(PERSON_FIRST);
+        if (s.rocket) state.body.rocket = s.rocket;
+        changed(); await tick();
+        const want = s.rocket ? 0 : Object.values(state.peopleAway).filter(P => P.place).length;
+        let shown = 0;
+        for (let k = 0; k < 80; k++) { changed(); await tick();
+          shown = [...pic.querySelectorAll("g.person-placed")].filter(g => g.style.display !== "none").length;
+          if (k >= 8 && shown >= want && !personBusy && !personWanted) break; }
+        stillClocks(); changed(); await tick();
+        const m = markup();
+        res.push({ ...s, label: s.label + (shown < want ? " (" + shown + " of " + want + " drawn)" : ""), hash: h(m), same: false, thumb: await snap(), svg: svgOf(), settings: settingsText() }); continue;
+      }
       if (s.crop) {
         Object.assign(state.background, s.bg); showFriend(false); changed(); await tick();
         const t = pic.querySelector("g.thing");
